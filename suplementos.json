@@ -1,0 +1,61 @@
+{
+    "products": [
+      {
+        "image": "images/suplementos/Suplemento.png",
+        "title": "Impact Whey 2.5 Kg + 1 Creatina 250 Gr + Shaker MP + Protein Brownie",
+        "old_price": "S/448.00",
+        "price": "S/399.00",
+        "discount": "S/399.00",
+        "button_text": "Ver Producto"
+      },
+      {
+        "image": "images/suplementos/Suplemento.png",
+        "title": "Impact Whey Isolate 2.5kg + Daily Multivitamin + Barra Proteica",
+        "old_price": "S/449.00",
+        "price": "S/369.00",
+        "discount": "S/369.00",
+        "button_text": "Ver Producto"
+      },
+      {
+        "image": "images/suplementos/Suplemento.png",
+        "title": "Vegan Blend Protein 2.5kg + Creatina 250gr + Shaker My Vegan Verde",
+        "old_price": "S/438.00",
+        "price": "S/349.00",
+        "discount": "S/349.00",
+        "button_text": "Ver Producto"
+      }
+      ,
+      {
+        "image": "images/suplementos/Suplemento.png",
+        "title": "Impact Whey Isolate 2.5kg + Daily Multivitamin + Barra Proteica",
+        "old_price": "S/449.00",
+        "price": "S/369.00",
+        "discount": "S/369.00",
+        "button_text": "Ver Producto"
+      },
+      {
+        "image": "images/suplementos/Suplemento.png",
+        "title": "Vegan Blend Protein 2.5kg + Creatina 250gr + Shaker My Vegan Verde",
+        "old_price": "S/438.00",
+        "price": "S/349.00",
+        "discount": "S/349.00",
+        "button_text": "Ver Producto"
+      },
+      {
+        "image": "images/suplementos/Suplemento.png",
+        "title": "Impact Whey Isolate 2.5kg + Daily Multivitamin + Barra Proteica",
+        "old_price": "S/449.00",
+        "price": "S/369.00",
+        "discount": "S/369.00",
+        "button_text": "Ver Producto"
+      },
+      {
+        "image": "images/suplementos/Suplemento.png",
+        "title": "Vegan Blend Protein 2.5kg + Creatina 250gr + Shaker My Vegan Verde",
+        "old_price": "S/438.00",
+        "price": "S/349.00",
+        "discount": "S/349.00",
+        "button_text": "Ver Producto"
+      }
+    ]
+  }

@@ -1,0 +1,21 @@
+.table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#registerClient {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#registerClient:hover {
+    background-color: #0056b3;
+}
