@@ -49,134 +49,31 @@ body {
   background: linear-gradient(to right, #fb930a, #f5e47b);
 }
 
-/*header section*/
-.hero_area {
-  height: 100vh;
-  position: relative;
-  background-image: url(../images/hero-bg.png);
-  background-size: cover;
-  background-position: bottom right;
-  background-repeat: no-repeat;
-}
-
-.sub_page .hero_area {
-  height: auto;
-  background-position: top right;
-}
-
-.hero_area.sub_pages {
-  height: auto;
-}
-
-.header_section .container-fluid {
-  padding-right: 25px;
-  padding-left: 25px;
-}
-
-.header_section .nav_container {
-  margin: 0 auto;
-}
-
-.custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
-  padding: 10px 30px;
-  color: #ffffff;
-  text-align: center;
-}
-
-a,
-a:hover,
-a:focus {
-  text-decoration: none;
-}
-
-a:hover,
-a:focus {
-  color: initial;
-}
-
-.btn,
-.btn:focus {
-  outline: none !important;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.custom_nav-container .nav_search-btn {
-  background-image: url(../images/search-icon.png);
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position-y: 7px;
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border: none;
-}
-
-.navbar-brand {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.navbar-brand img {
-  width: 30px;
-  margin-right: 5px;
-}
-
-.navbar-brand span {
-  font-size: 22px;
-  font-weight: 700;
-  color: #191919;
-  text-transform: uppercase;
+.header_section {
+  position: fixed; /* Para que la barra de navegación se quede fija */
+  top: 0; /* Para que esté en la parte superior */
+  left: 0; /* Para que esté en la parte izquierda */
+  height: 100%; /* Ocupa toda la altura */
+  width: 280px; /* Puedes ajustar el ancho según sea necesario */
+  background-color: #000000; /* Cambia el color de fondo como desees */
+  z-index: 9999; /* Asegúrate de que esté por encima de otros elementos */
 }
 
 .custom_nav-container {
-  z-index: 99999;
-  padding: 5px 0;
+  flex-direction: column; /* Para que la navegación esté en columna */
 }
 
-.custom_nav-container .navbar-toggler {
-  outline: none;
+.navbar-nav .nav-item {
+  width: 100%; /* Asegura que los enlaces ocupen todo el ancho */
 }
 
-.custom_nav-container .navbar-toggler .navbar-toggler-icon {
-  background-image: url(../images/menu.png);
-  background-size: 45px;
+.navbar-nav .nav-link {
+  text-align: left; /* Alinea el texto a la izquierda */
+  padding: 30px;
+  color: white;
+   /* Ajusta el padding según sea necesario */
 }
 
-.quote_btn-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.quote_btn-container a {
-  color: #000000;
-  position: relative;
-}
-
-.quote_btn-container a .cart_number {
-  position: absolute;
-  top: 68%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: #ffffff;
-  font-size: 12px;
-}
-
-.quote_btn-container a img {
-  width: 20px;
-  margin: 0 25px;
-}
-
-/*end header section*/
 /* slider section */
 .slider_section {
   height: calc(100% - 70px);
