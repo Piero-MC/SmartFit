@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Validar que solo se ingresen números en Número de Tarjeta y máximo 16 dígitos
     cardNumber.addEventListener('input', function () {
-        this.value = this.value.replace(/\D/g, '').slice(0, 16);
+        this.value = this.value.replace(/\D/g, '-').slice(0, 19);
     });
 
     // Validar que la fecha tenga formato MM/AA y el mes sea válido (01-12)
@@ -86,7 +86,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         this.value = input;
     });
-
+    pagoEfectivo.addEventListener('submit',function(event){
+        event.preventDefault();
+        alert('Pago exitoso');
+        form.submit();
+    })
     // Validar que solo se ingresen 3 números en CVV
     cvv.addEventListener('input', function () {
         this.value = this.value.replace(/\D/g, '').slice(0, 3);
@@ -101,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const cvvValue = cvv.value;
 
         // Validar que el número de tarjeta tenga 16 dígitos
-        if (cardNumberValue.length !== 16) {
+        if (cardNumberValue.length !== 19) {
             alert('El número de tarjeta debe tener 16 dígitos');
             return;
         }
@@ -124,4 +128,18 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Pago exitoso');
         form.submit();  // Aquí puedes hacer la lógica de enviar los datos al servidor
     });
+});
+document.getElementById('cardNumber').addEventListener('input', function (e) {
+    let input = e.target.value.replace(/\D/g, ''); // Remover cualquier carácter que no sea número
+    let formattedInput = '';
+
+    // Agregar guiones cada 4 dígitos
+    for (let i = 0; i < input.length; i += 4) {
+        if (i > 0) {
+            formattedInput += '-'; // Agregar guion antes de los siguientes grupos de 4 dígitos
+        }
+        formattedInput += input.substring(i, i + 4); // Agregar los dígitos de 4 en 4
+    }
+
+    e.target.value = formattedInput; // Actualizar el valor del input
 });
