@@ -1,0 +1,31 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6;
+}
+
+h1 {
+    color: #343a40;
+    margin-bottom: 30px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Ajusta el ancho del cuadro */
+    margin: 0 auto; /* Centra el cuadro en la página */
+}
+
+.card-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.result {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.result p {
+    font-weight: bold;
+}

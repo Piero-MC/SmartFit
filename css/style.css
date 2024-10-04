@@ -71,6 +71,7 @@ body {
   text-align: left; /* Alinea el texto a la izquierda */
   padding: 30px;
   color: white;
+  width:fit-content;
    /* Ajusta el padding según sea necesario */
 }
 

@@ -9,7 +9,7 @@
 }
 
 #registerClient {
-    background-color: #007bff;
+    background-color: #000000;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -17,5 +17,5 @@
 }
 
 #registerClient:hover {
-    background-color: #0056b3;
+    background-color: #5d5d5d;
 }
