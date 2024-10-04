@@ -30,7 +30,7 @@
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
 
-<body style="display: flex; flex-direction: column;">
+<body style="display: flex; flex-direction: column; ">
 
   <header class="header_section">
     <div class="container-fluid">
@@ -60,7 +60,7 @@
               <a class="nav-link" href="clientes.html">Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link" href="index.html">User</a>
             </li>
           </ul>
         </div>
@@ -75,7 +75,7 @@
   </header>
 
   <!-- home section starts -->
-  <section class="container">
+  <section class="container fade-in">
 
     <div class="heading_container">
       <h2 style="margin-top: 70px; margin-bottom: 100px;">Estadísticas <strong>Mensuales</strong></h2>
@@ -277,5 +277,10 @@
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
 </body>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const content = document.querySelector('.fade-in');
+    content.classList.add('visible'); // Añade la clase para iniciar la animación
+  });
+</script>
 </html>

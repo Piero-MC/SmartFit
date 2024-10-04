@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>login</title>
+  <link rel="icon" href="images/iconSF.png" type="image/png">
+  <link rel="stylesheet" href="login.css">
+  
+  <link href="css/style.css" rel="stylesheet" />
+   <!-- bootstrap core css -->
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
+
 <body>
-    <a href="dashboard.html">Dashboard</a>
+  <form id="loginForm" class="mt-4 fade-in">
+    <div class="card">
+        <div class="card-body">
+            <div class="cnt_img">
+                <img src="images/Smart_Fit_logo.svg.png" class="smartfitLogo" alt="Logo Smart Fit">
+            </div>
+
+            <!-- Usuario -->
+            <div class="form-group">
+                <input type="text" id="username" class="form-control" placeholder="Usuario" required>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
+            </div>
+
+            <!-- Botón de Login -->
+            <button type="submit" class="btn btn-success btn-block mt-3 btnLogin">Iniciar Sesión</button>
+        </div>
+    </div>
+</form>
 </body>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevenir el comportamiento por defecto del form
+    
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    
+    // Validar que ambos campos no estén vacíos
+    if (username.trim() === '' || password.trim() === '') {
+        alert('Por favor, complete ambos campos.');
+        return;
+    }
+
+    // Redirigir al dashboard si todo es correcto
+    window.location.href = 'dashboard.html';
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const content = document.querySelector('.fade-in');
+    content.classList.add('visible'); // Añade la clase para iniciar la animación
+  });
+</script>
 </html>

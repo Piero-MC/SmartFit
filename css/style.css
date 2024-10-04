@@ -635,3 +635,26 @@ body {
 .client_section .carousel-control-next-icon:hover {
   background-image: url(../images/next.png);
 }
+
+
+.fade-in {
+  opacity: 0; /* Inicia completamente transparente */
+  transform: translateY(20px); /* Se mueve ligeramente hacia abajo */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones suaves */
+}
+
+.fade-in.visible {
+  opacity: 1; /* Se hace visible */
+  transform: translateY(0); /* Vuelve a su posición original */
+}
+
+.text-entrance {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}
+
+.text-entrance.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
