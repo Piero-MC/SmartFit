@@ -1,19 +1,19 @@
 [
     {
       "Nombre":"Piero Antonio",
-      "usuario": "Piero",
-      "contraseña": "password123",
+      "username": "Piero",
+      "password": "123",
       "numeroTelf":"98467215",
       "direccion":"lima",
       "correo":"example@gmail.com"
     },
     {
-      "usuario": "Antonio",
-      "contraseña": "password456"
+      "username": "Antonio",
+      "password": "password456"
     },
     {
-      "usuario": "Paco",
-      "contraseña": "123"
+      "username": "Paco",
+      "password": "123"
     }
 
   ]
