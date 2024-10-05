@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <!-- Basic -->
@@ -12,29 +12,96 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Suplementos</title>
+  <title>Clientes</title>
   <link rel="icon" href="images/iconSF.png" type="image/png">
-  <link rel="stylesheet" href="suplementos.css">
+
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Importar Bootstrap JS y dependencias -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Importar Bootstrap JS y dependencias -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="clientes.css">
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
+<style>
+  .container {
+    margin-top: 50px;
+    max-width: 1000px;
+    /* Ancho máximo del contenedor */
+    display: flex;
+    gap: 30px;
+  }
 
-<body class="sub_page">
 
+  .btn-custom {
+    background-color: #000000;
+    /* Color dorado para el botón */
+    color: #ffffff;
+    /* Texto negro en el botón */
+    border-radius: 4px;
+  }
+
+  .btn-custom:hover {
+    background-color: #666666;
+    color: white;
+    /* Color dorado más claro al pasar el mouse */
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  th,
+  td {
+    text-align: center;
+  }
+
+  .table-header {
+    background-color: #DAA520;
+    /* Color dorado para la cabecera de la tabla */
+    color: #fff;
+    /* Color de texto blanco */
+  }
+
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+    /* Color de fondo claro para filas impares */
+  }
+
+  .table-striped tbody tr:nth-of-type(even) {
+    background-color: #e0e0e0;
+    /* Color de fondo más oscuro para filas pares */
+  }
+
+  .fade-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centrar horizontalmente */
+    justify-content: center;
+    /* Centrar verticalmente */
+    height: 80vh;
+    /* Altura ajustada para ser más larga */
+    padding: 20px;
+    /* Espaciado interno */
+  }
+</style>
+
+<body>
   <div class="hero_area">
     <!-- header section starts -->
     <header class="header_section">
@@ -81,42 +148,82 @@
     <!-- end header section -->
   </div>
 
-
-
-  <!-- sumplementos section -->
-
-  <section class="container fade-in" style="margin-top: 50px;">
+  <section class="fade-in">
     <div class="heading_container">
-      <h2>
-        Nuestros <strong>suplementos</strong>
-      </h2>
-
+      <h2>Nuestros <strong>Suplementos</strong></h2>
     </div>
+    <div class="container">
+      <form action="process.php" method="POST">
+        <div class="form-group">
+          <label for="codigo">Código:</label>
+          <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingrese el código" required>
+        </div>
+        <div class="form-group">
+          <label for="producto">Producto:</label>
+          <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el producto"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="cantidad">Cantidad:</label>
+          <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="precio">Precio:</label>
+          <input type="text" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio" required>
+        </div>
 
+        <button type="submit" class="btn btn-custom">Registrar</button>
+      </form>
 
-    <div class="container my-5">
-      <div id="product-list" class="row"></div>
+      <table class="table table-bordered table-striped align-middle" style="cursor: default;">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Producto</th>
+            <th>Stock</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>0001</td>
+            <td>Animal Park</td>
+            <td>30.0</td>
+            <td>199.0</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+            <td>Lorem</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="suplementos.js"></script>
-
   </section>
-  <!-- end about section -->
-
-
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/custom.js"></script>
-
+  <script>
+    window.onload = function () {
+      document.querySelector('.fade-in').classList.add('visible');
+    };
+  </script>
 </body>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const content = document.querySelector('.fade-in');
-    content.classList.add('visible'); // Añade la clase para iniciar la animación
-  });
-</script>
 
 </html>

@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Datos de clientes simulados (esto sería reemplazado por la base de datos)
     const clients = [
-        { id: 1, name: "Juan", lastName: "Pérez", dni: "12345678", email: "juan.perez@gmail.com", phone: "987654321" },
-        { id: 2, name: "María", lastName: "Gómez", dni: "87654321", email: "maria.gomez@gmail.com", phone: "987654322" },
-        { id: 3, name: "Carlos", lastName: "Fernández", dni: "12348765", email: "carlos.fernandez@gmail.com", phone: "987654323" },
+        { id: 1, name: "Juan Perez", dni: "12345678", email: "juan.perez@gmail.com", phone: "987654321",membresia:"Fit",meses:"12",fechaFin:"20-10-2024" },
+        { id: 2, name: "María Gómez", dni: "87654321", email: "maria.gomez@gmail.com", phone: "987654322",membresia:"Black",meses:"10",fechaFin:"20-10-2024"   },
+        { id: 3, name: "Carlos Fernandez", dni: "12348765", email: "carlos.fernandez@gmail.com", phone: "987654323",membresia:"Smart",meses:"5",fechaFin:"20-10-2024" },
         // Otros clientes...
     ];
 
@@ -18,10 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 <tr>
                     <td>${client.id}</td>
                     <td>${client.name}</td>
-                    <td>${client.lastName}</td>
                     <td>${client.dni}</td>
                     <td>${client.email}</td>
                     <td>${client.phone}</td>
+                    <td>${client.membresia}</td>
+                    <td>${client.meses}</td>
+                    <td>${client.fechaFin}</td>
+                    <td><button>renovar</button></td>
                 </tr>
             `;
             clientTableBody.innerHTML += row;
@@ -38,8 +41,4 @@ document.addEventListener("DOMContentLoaded", function () {
         renderClients(filteredClients);
     });
 
-    // Evento para el botón de registrar cliente
-    document.getElementById("registerClient").addEventListener("click", function() {
-        alert("Funcionalidad de registro de cliente pendiente de implementar.");
-    });
 });
