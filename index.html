@@ -89,4 +89,20 @@
       content.classList.add('visible'); // Añade la clase para iniciar la animación
     });
   </script>
+  <script>
+    // Función para validar y eliminar caracteres no permitidos
+    function validateInput(event) {
+        const regex = /^[a-zA-Z0-9]*$/; // Permitir solo letras y números
+        const value = event.target.value;
+
+        // Reemplazar caracteres no válidos
+        if (!regex.test(value)) {
+            event.target.value = value.replace(/[^a-zA-Z0-9]/g, ''); // Remover caracteres no válidos
+        }
+    }
+
+    // Asignar la función de validación a los eventos de entrada
+    document.getElementById('username').addEventListener('input', validateInput);
+    document.getElementById('password').addEventListener('input', validateInput);
+</script>
 </html>
