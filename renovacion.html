@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela</title>
+    <link rel="icon" href="images/iconSF.png" type="image/png">
+    <link rel="stylesheet" href="pasarela.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap"
+        rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+    <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                <img src="images/logoSF.png" style="width: 250px;" alt="logo">
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav flex-column w-100">
+                <li class="nav-item active">
+                  <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="suplementos.html">Suplementos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="membresias.html">Membresías</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="clientes.html">Clientes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="">User</a>
+                </li>
+              </ul>
+            </div>
+            <div class="quote_btn-container">
+    
+              <form class="form-inline">
+                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+    <div class="container mt-5 pasarela">
+        <h1 class="text-center">Pasarela de Pagos</h1>
+        <form id="paymentForm" class="mt-4">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <div class="cnt_img">
+                        <img src="images/Smart_Fit_logo.svg.png" class="smartfitLogo" alt="Logo Smart Fit">
+                    </div>
+                    
+                    <!-- Número de Tarjeta -->
+                    <div class="form-group">
+                        <input type="text" id="cardNumber" class="form-control" placeholder="Número de Tarjeta" required>
+                    </div>
+        
+                    <!-- Fecha de Vencimiento y CVV en una sola línea -->
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <input type="text" id="expiryDate" class="form-control" placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="cvv" class="form-control" placeholder="CVV" maxlength="3" required>
+                        </div>
+                    </div>
+                    <!-- Nombre y Apellido en una sola línea -->
+                     
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <input type="text" id="cardholderName" class="form-control" placeholder="Nombre" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="cardholderSurname" class="form-control" placeholder="Apellido" required>
+                        </div>
+                    </div>
+        
+                    <!-- Correo Electrónico -->
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-control" placeholder="Correo Electrónico" required>
+                    </div>
+        
+        
+                    <!-- Botón de Pago -->
+                    <button type="submit" class="btn btn-success btn-block mt-3 btnPago">Pagar S/50.00</button>
+                    
+        
+                    <!-- Iconos de tarjetas -->
+                    <div class="text-center">
+                        <img class="targets" src="/images/targetsIcons/visaIcon.png" alt="Visa">
+                        <img class="targets" src="/images/targetsIcons/masterCardIcon.png" alt="MasterCard">
+                        <img class="targets" src="/images/targetsIcons/american_ex_icon.png" alt="American Express">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="container" style="width: 300px;">
+            <form class="pagoEfectivo">
+                <button type="submit" class="btn btn-success btn-block mt-3 btnPagoEf">Pagar en Efectivo</button>
+            </form>
+        </div>
+        <div id="result" class="result mt-3"></div>
+    </div>
+
+    <script src="pasarela.js"></script>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+</body>
+
+</html>

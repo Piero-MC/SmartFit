@@ -15,53 +15,75 @@
         rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Importar Bootstrap JS y dependencias -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     
 </head>
 
 <body>
+  <div class="hero_area">
+    <!-- header section starts -->
     <header class="header_section">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
-            <a class="navbar-brand" href="index.html">
-              <span>
-                <img src="images/logoSF.png" style="width: 250px;" alt="logo">
-              </span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav flex-column w-100">
-                <li class="nav-item active">
-                  <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="suplementos.html">Suplementos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="membresias.html">Membresías</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="clientes.html">Clientes</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="">User</a>
-                </li>
-              </ul>
-            </div>
-            <div class="quote_btn-container">
-    
-              <form class="form-inline">
-                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
-              </form>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
+          <a class="navbar-brand" href="dashboard.html">
+            <span>
+              <img src="images/logoSF.png" style="width: 250px;" alt="logo">
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-    <div class="container mt-5 pasarela">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav flex-column lista-nav">
+              <li class="nav-item li-nav">
+                <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item li-nav">
+                <a class="nav-link" href="ventas.html">Ventas</a>
+              </li>
+              <li class="nav-item li-nav">
+                <a class="nav-link" href="suplementos.html">Suplementos</a>
+              </li>
+              <li class="nav-item li-nav">
+                <a class="nav-link" href="membresias.html">Membresías</a>
+              </li>
+              <li class="nav-item li-active">
+                <a class="nav-link" href="clientes.html">Clientes</a>
+              </li>
+              <li class="nav-item dropdown li-nav">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span id="welcomeUser">
+                    <p class="welcomeUser" id="welcomeUser"></p>
+                  </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                  <a class="dropdown-item logout-nav" href="#" id="logout">Cerrar Sesión</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="quote_btn-container">
+
+            <form class="form-inline">
+              <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+
+    <div class="container mt-5 pasarela fade-in">
         <h1 class="text-center">Pasarela de Pagos</h1>
         <form id="paymentForm" class="mt-4">
             <div class="card">
@@ -130,4 +152,26 @@
     <script type="text/javascript" src="js/custom.js"></script>
 </body>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const content = document.querySelector('.fade-in');
+    content.classList.add('visible'); // Añade la clase para iniciar la animación
+  });
+
+  const username = localStorage.getItem('username');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const username = localStorage.getItem('username');
+    document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
+  });
+
+  // Manejar el cierre de sesión
+  document.getElementById('logout').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
+
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
+</script>
 </html>
