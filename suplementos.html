@@ -44,7 +44,19 @@
     display: flex;
     gap: 30px;
   }
+  .scrollable-table {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
 
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #343a40; /* Color de fondo del encabezado */
+  color: white;
+  z-index: 10;
+}
 
   .btn-custom {
     background-color: #000000;
@@ -116,7 +128,7 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-  
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav flex-column lista-nav">
               <li class="nav-item li-nav">
@@ -135,8 +147,11 @@
                 <a class="nav-link" href="clientes.html">Clientes</a>
               </li>
               <li class="nav-item dropdown li-nav">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span id="welcomeUser"><p class="welcomeUser" id="welcomeUser"></p></span>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span id="welcomeUser">
+                    <p class="welcomeUser" id="welcomeUser"></p>
+                  </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                   <a class="dropdown-item logout-nav" href="#" id="logout">Cerrar Sesión</a>
@@ -145,7 +160,7 @@
             </ul>
           </div>
           <div class="quote_btn-container">
-  
+
             <form class="form-inline">
               <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
             </form>
@@ -158,95 +173,156 @@
 
   <section class="fade-in">
     <div class="heading_container">
-      <h2>Nuestros <strong>Suplementos</strong></h2>
+        <h2>Nuestros <strong>Suplementos</strong></h2>
     </div>
     <div class="container">
-      <form action="process.php" method="POST">
-        <div class="form-group">
-          <label for="codigo">Código:</label>
-          <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingrese el código" required>
-        </div>
-        <div class="form-group">
-          <label for="producto">Producto:</label>
-          <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el producto"
-            required>
-        </div>
-        <div class="form-group">
-          <label for="cantidad">Cantidad:</label>
-          <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad"
-            required>
-        </div>
-        <div class="form-group">
-          <label for="precio">Precio:</label>
-          <input type="text" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio" required>
-        </div>
+        <form id="suplementosForm">
+            <div class="form-group">
+                <label for="codigo">Código:</label>
+                <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingrese el código" required>
+            </div>
+            <div class="form-group">
+                <label for="producto">Producto:</label>
+                <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el producto" required>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" required>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="text" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Registrar</button>
+        </form>
 
-        <button type="submit" class="btn btn-custom">Registrar</button>
-      </form>
-
-      <table class="table table-bordered table-striped align-middle" style="cursor: default;">
-        <thead class="table-dark">
-          <tr>
-            <th>ID</th>
-            <th>Código</th>
-            <th>Producto</th>
-            <th>Stock</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>0001</td>
-            <td>Animal Park</td>
-            <td>30.0</td>
-            <td>199.0</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-            <td>Lorem</td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="scrollable-table">
+            <table class="table table-bordered table-striped align-middle" style="cursor: default; width: 700px;">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="suplementosTableBody">
+                    <!-- Aquí se cargará dinámicamente el contenido de la tabla -->
+                </tbody>
+            </table>
+        </div>
     </div>
-  </section>
+</section>
+
+<script>
+    let suplementos = JSON.parse(localStorage.getItem('suplementos')) || [];
+    let suplementoId = suplementos.length > 0 ? suplementos[suplementos.length - 1].id + 1 : 1;
+    let editingIndex = -1;
+
+    // Función para renderizar la tabla de suplementos
+    function renderTable() {
+        const tableBody = document.getElementById('suplementosTableBody');
+        tableBody.innerHTML = ''; // Limpiar la tabla antes de renderizar
+
+        suplementos.forEach((suplemento, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${suplemento.id}</td>
+                <td>${suplemento.codigo}</td>
+                <td>${suplemento.producto}</td>
+                <td>${suplemento.stock}</td>
+                <td>${suplemento.precio}</td>
+                <td>
+                    <button onclick="editarSuplemento(${index})">Editar</button>
+                    <button onclick="eliminarSuplemento(${index})">Eliminar</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Función para agregar o actualizar un suplemento
+    function agregarOActualizarSuplemento(codigo, producto, stock, precio) {
+        if (editingIndex === -1) {
+            // Agregar nuevo suplemento
+            suplementos.push({ id: suplementoId++, codigo, producto, stock, precio });
+        } else {
+            // Actualizar el suplemento existente
+            suplementos[editingIndex] = { id: suplementos[editingIndex].id, codigo, producto, stock, precio };
+            editingIndex = -1; // Reiniciar el índice de edición
+        }
+
+        // Guardar los suplementos en localStorage
+        localStorage.setItem('suplementos', JSON.stringify(suplementos));
+
+        // Renderizar la tabla nuevamente
+        renderTable();
+    }
+
+    // Función para eliminar un suplemento
+    function eliminarSuplemento(index) {
+        suplementos.splice(index, 1);
+        localStorage.setItem('suplementos', JSON.stringify(suplementos)); // Guardar los cambios en localStorage
+        renderTable(); // Renderizar nuevamente la tabla
+    }
+
+    // Función para editar un suplemento
+    function editarSuplemento(index) {
+        const suplemento = suplementos[index];
+
+        // Cargar los datos en los inputs
+        document.getElementById('codigo').value = suplemento.codigo;
+        document.getElementById('producto').value = suplemento.producto;
+        document.getElementById('cantidad').value = suplemento.stock;
+        document.getElementById('precio').value = suplemento.precio;
+
+        // Guardar el índice del suplemento que se está editando
+        editingIndex = index;
+    }
+
+    // Capturar el evento de submit del formulario
+    document.getElementById('suplementosForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Obtener los valores del formulario
+        const codigo = document.getElementById('codigo').value;
+        const producto = document.getElementById('producto').value;
+        const stock = document.getElementById('cantidad').value;
+        const precio = document.getElementById('precio').value;
+
+        // Llamar a la función para agregar o actualizar el suplemento
+        agregarOActualizarSuplemento(codigo, producto, stock, precio);
+
+        // Limpiar el formulario
+        document.getElementById('suplementosForm').reset();
+    });
+
+    // Renderizar la tabla al cargar la página
+    document.addEventListener('DOMContentLoaded', renderTable);
+</script>
+  
   <script>
     window.onload = function () {
       document.querySelector('.fade-in').classList.add('visible');
     };
-    
-  const username = localStorage.getItem('username');
 
-document.addEventListener('DOMContentLoaded', function () {
-  const username = localStorage.getItem('username');
-  document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
-});
+    const username = localStorage.getItem('username');
 
-  // Manejar el cierre de sesión
-  document.getElementById('logout').addEventListener('click', function () {
-    // Eliminar el nombre de usuario de localStorage
-    localStorage.removeItem('username');
-    
-    // Redirigir al usuario a la página de inicio de sesión o de inicio
-    window.location.href = 'index.html';
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+      const username = localStorage.getItem('username');
+      document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
+    });
+
+    // Manejar el cierre de sesión
+    document.getElementById('logout').addEventListener('click', function () {
+      // Eliminar el nombre de usuario de localStorage
+      localStorage.removeItem('username');
+
+      // Redirigir al usuario a la página de inicio de sesión o de inicio
+      window.location.href = 'index.html';
+    });
   </script>
 </body>
 
