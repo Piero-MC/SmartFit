@@ -12,22 +12,27 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Membresías</title>
+  <title>Clientes</title>
   <link rel="icon" href="images/iconSF.png" type="image/png">
+
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
- 
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Importar Bootstrap JS y dependencias -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
+
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="clientes.css">
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
@@ -54,13 +59,13 @@
               <li class="nav-item li-nav">
                 <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item li-nav">
+              <li class="nav-item li-active">
                 <a class="nav-link" href="ventas.html">Ventas</a>
               </li>
               <li class="nav-item li-nav">
                 <a class="nav-link" href="suplementos.html">Suplementos</a>
               </li>
-              <li class="nav-item li-active">
+              <li class="nav-item li-nav">
                 <a class="nav-link" href="membresias.html">Membresías</a>
               </li>
               <li class="nav-item li-nav">
@@ -91,81 +96,65 @@
     <!-- end header section -->
   </div>
 
-
-
-  <!-- membresías section -->
-
-  <section class="price_section layout_padding fade-in">
+  <!-- clientes section -->
+  <div class="price_section layout_padding fade-in">
     <div class="container">
       <div class="heading_container">
         <h2>
-          Nuestras <strong>Membresías</strong>
+          Nuestras <strong>Ventas</strong>
         </h2>
       </div>
-      <div class="price_container">
-        <div class="boxBlack">
-          <div class="pricing-plan" style="padding: 0;">
-            <h2>PLAN <strong>Black</strong></h2>
-            <p class="price">109.90 PEN/mes</p>
-            <br><br>
-            <ul>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Entrena en todos los gimnasios de
-                Smart Fit en Perú y Latinoamérica (+1500)</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Acceso ilimitado a todas las
-                áreas de peso libre e integrado - Máquinas, pesas, discos y barras</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Clases grupales con profesores -
-                Actívate, baila y relájate</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Smart Fit App - Tu plan de
-                entrenamiento personalizado</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Smart Fit Go - Entrena donde y
-                cuando quieras</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Relájate en los sillones de
-                masajes</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">5 invitados al mes en el gimnasio
-                que quieras</li>
-            </ul>
+      <section class="contact_section layout_padding">
+        <div class="card-body">
+          <!-- Buscador por DNI -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                <input type="text" id="searchDni" class="form-control" placeholder="Buscar por DNI">
+              </div>
+            </div>
+            <div class="col-md-6 text-end">
+              <a href="registrarVenta.html" class="btn btn-primary" id="registerClient"><i class="bi bi-plus-lg"></i>
+                Nueva Venta</a>
+            </div>
+          </div>
+
+          <!-- Tabla de clientes -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle" style="cursor: default;">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>DNI</th>
+                  <th>Email</th>
+                  <th>Teléfono</th>
+                  <th>Membresía</th>
+                  <th>Meses</th>
+                  <th>Fecha-Fin</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="clientTableBody">
+                <!-- Filas de clientes se generarán dinámicamente -->
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <div class="box">
-          <div class="pricing-plan featured">
-            <h2>PLAN <strong>Fit</strong></h2>
-            <p class="price"> 79.90 PEN/mes</p>
-            <br><br>
-            <ul style="list-style-type: none;">
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Acceso ilimitado a todas las
-                áreas de peso libre e integrado - Máquinas, pesas, discos y barras</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Clases grupales con profesores -
-                Actívate, baila y relájate</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Smart Fit App - Tu plan de
-                entrenamiento personalizado</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Smart Fit Go - Entrena donde y
-                cuando quieras</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Fidelidad de 12 meses</li>
-            </ul>
-          </div>
-        </div>
-        <div class="box">
-          <div class="pricing-plan">
-            <h2>Plan <strong>Smart</strong></h2>
-            <p class="price"> 89.90 PEN/mes</p>
-            <br><br>
-            <ul style="list-style-type: none;">
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;"> Acceso ilimitado a todas las
-                áreas de peso libre e integrado - Máquinas, pesas, discos y barras
-              </li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;"> Clases grupales con profesores -
-                Actívate, baila y relájate</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;"> Smart Fit App - Tu plan de
-                entrenamiento personalizado</li>
-              <li><img src="images/check.png" style="width: 20px; margin-right: 10px;"> Smart Fit Go - Entrena donde y
-                cuando quieras</li>
-            </ul>
-          </div>
-        </div>
+    </div>
+  </div>
 
-      </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Iconos de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom JS -->
+  <script src="clientes.js"></script>
   </section>
+
+  <!-- end contact section -->
 
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
@@ -177,7 +166,7 @@
     const content = document.querySelector('.fade-in');
     content.classList.add('visible'); // Añade la clase para iniciar la animación
   });
-  
+
   const username = localStorage.getItem('username');
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -185,14 +174,14 @@
     document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
   });
 
-    // Manejar el cierre de sesión
-    document.getElementById('logout').addEventListener('click', function () {
-      // Eliminar el nombre de usuario de localStorage
-      localStorage.removeItem('username');
-      
-      // Redirigir al usuario a la página de inicio de sesión o de inicio
-      window.location.href = 'index.html';
-    });
+  // Manejar el cierre de sesión
+  document.getElementById('logout').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
+
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
 </script>
 
 </html>

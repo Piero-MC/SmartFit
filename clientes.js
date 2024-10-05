@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${client.membresia}</td>
                     <td>${client.meses}</td>
                     <td>${client.fechaFin}</td>
-                    <td><button>renovar</button></td>
+                    <td><a href="renovacion.html">renovar</a></td>
                 </tr>
             `;
             clientTableBody.innerHTML += row;

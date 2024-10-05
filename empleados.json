@@ -1,7 +1,11 @@
 [
     {
+      "Nombre":"Piero Antonio",
       "usuario": "Piero",
-      "contraseña": "password123"
+      "contraseña": "password123",
+      "numeroTelf":"98467215",
+      "direccion":"lima",
+      "correo":"example@gmail.com"
     },
     {
       "usuario": "Antonio",
@@ -11,4 +15,5 @@
       "usuario": "Paco",
       "contraseña": "123"
     }
+
   ]
