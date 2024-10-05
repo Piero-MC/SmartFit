@@ -55,7 +55,7 @@
         alert('Por favor, complete ambos campos.');
         return;
     }
-
+    localStorage.setItem('username', username);
     // Redirigir al dashboard si todo es correcto
     window.location.href = 'dashboard.html';
 });

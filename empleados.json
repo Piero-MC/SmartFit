@@ -1,10 +1,14 @@
 [
     {
-      "email": "user1@example.com",
-      "password": "password123"
+      "usuario": "Piero",
+      "contraseña": "password123"
     },
     {
-      "email": "user2@example.com",
-      "password": "password456"
+      "usuario": "Antonio",
+      "contraseña": "password456"
+    },
+    {
+      "usuario": "Paco",
+      "contraseña": "123"
     }
   ]

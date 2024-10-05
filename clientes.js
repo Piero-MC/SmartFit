@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: 1, name: "Juan Perez", dni: "12345678", email: "juan.perez@gmail.com", phone: "987654321",membresia:"Fit",meses:"12",fechaFin:"20-10-2024" },
         { id: 2, name: "María Gómez", dni: "87654321", email: "maria.gomez@gmail.com", phone: "987654322",membresia:"Black",meses:"10",fechaFin:"20-10-2024"   },
         { id: 3, name: "Carlos Fernandez", dni: "12348765", email: "carlos.fernandez@gmail.com", phone: "987654323",membresia:"Smart",meses:"5",fechaFin:"20-10-2024" },
-        // Otros clientes...
+        
     ];
 
     const clientTableBody = document.getElementById("clientTableBody");

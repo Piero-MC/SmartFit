@@ -12,34 +12,42 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap"
+        rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet" />
     <link href="../css/responsive.css" rel="stylesheet" />
     <style>
         body {
-            background-color: #fff; /* Fondo blanco */
-            color: #000; /* Color de texto negro */
+            background-color: #fff;
+            /* Fondo blanco */
+            color: #000;
+            /* Color de texto negro */
         }
 
         .container {
             margin-top: 50px;
-            max-width: 900px; /* Bordes redondeados */
+            max-width: 900px;
+            /* Bordes redondeados */
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
-            font-weight: bold; /* Negrita */
+            font-weight: bold;
+            /* Negrita */
         }
 
 
         .btn-custom {
-            background-color: #DAA520; /* Color dorado para el botón */
-            color: #ffffff; /* Texto negro en el botón */
+            background-color: #DAA520;
+            /* Color dorado para el botón */
+            color: #ffffff;
+            /* Texto negro en el botón */
         }
 
         .btn-custom:hover {
-            background-color: #FFD700; /* Color dorado más claro al pasar el mouse */
+            background-color: #FFD700;
+            /* Color dorado más claro al pasar el mouse */
         }
     </style>
 </head>
@@ -47,44 +55,53 @@
 <body class="sub_page">
     <header class="header_section">
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
-                <a class="navbar-brand" href="dashboard.html">
-                    <span>
-                        <img src="images/logoSF.png" style="width: 250px;" alt="logo">
-                    </span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav flex-column w-100">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="suplementos.html">Suplementos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="membresias.html">Membresías</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="clientes.html">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">User</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="quote_btn-container">
-                    <form class="form-inline">
-                        <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                    </form>
-                </div>
-            </nav>
+          <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
+            <a class="navbar-brand" href="dashboard.html">
+              <span>
+                <img src="images/logoSF.png" style="width: 250px;" alt="logo">
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav flex-column lista-nav">
+                <li class="nav-item li-nav">
+                  <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item li-nav">
+                  <a class="nav-link" href="suplementos.html">Ventas</a>
+                </li>
+                <li class="nav-item li-nav">
+                  <a class="nav-link" href="suplementos.html">Suplementos</a>
+                </li>
+                <li class="nav-item li-nav">
+                  <a class="nav-link" href="membresias.html">Membresías</a>
+                </li>
+                <li class="nav-item li-active">
+                  <a class="nav-link" href="clientes.html">Clientes</a>
+                </li>
+                <li class="nav-item dropdown li-nav">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span id="welcomeUser"><p class="welcomeUser" id="welcomeUser"></p></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item logout-nav" href="#" id="logout">Cerrar Sesión</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="quote_btn-container">
+    
+              <form class="form-inline">
+                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+          </nav>
         </div>
-    </header>
+      </header>
 
     <div class="container fade-in">
         <div class="heading_container" style="margin-bottom: 20px;">
@@ -100,19 +117,22 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-4 col-form-label">Nombre y Apellidos:</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre"
+                        required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-4 col-form-label">Correo:</label>
                 <div class="col-sm-8">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo"
+                        required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="phone" class="col-sm-4 col-form-label">Teléfono:</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Ingrese su teléfono" required>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Ingrese su teléfono"
+                        required>
                 </div>
             </div>
             <div class="form-group row">
@@ -128,7 +148,8 @@
             <div class="form-group row">
                 <label for="months" class="col-sm-4 col-form-label">Meses:</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Ingrese Meses" required>
+                    <input type="number" class="form-control" id="months" name="months" placeholder="Ingrese Meses"
+                        required>
                 </div>
             </div>
             <div class="d-flex justify-content-between">
@@ -140,9 +161,25 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const content = document.querySelector('.fade-in');
-      content.classList.add('visible'); // Añade la clase para iniciar la animación
+        const content = document.querySelector('.fade-in');
+        content.classList.add('visible'); // Añade la clase para iniciar la animación
     });
-  </script>
-  
+
+    const username = localStorage.getItem('username');
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const username = localStorage.getItem('username');
+        document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
+    });
+
+    // Manejar el cierre de sesión
+    document.getElementById('logout').addEventListener('click', function () {
+        // Eliminar el nombre de usuario de localStorage
+        localStorage.removeItem('username');
+
+        // Redirigir al usuario a la página de inicio de sesión o de inicio
+        window.location.href = 'index.html';
+    });
+</script>
+
 </html>
