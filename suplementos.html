@@ -217,6 +217,8 @@
 </section>
 
 <script>
+    import s from 'suplementos.json';
+    const suplementosJSON = JSON.stringify(s); 
     let suplementos = JSON.parse(localStorage.getItem('suplementos')) || [];
     let suplementoId = suplementos.length > 0 ? suplementos[suplementos.length - 1].id + 1 : 1;
     let editingIndex = -1;
