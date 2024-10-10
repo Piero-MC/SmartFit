@@ -99,11 +99,11 @@
 
     <div class="container fade-in mt-5">
         <div class="heading_container" style="margin-bottom: 20px;">
-            <h2>Registrar Clientes</h1>
+            <h2>Registrar Clientes</h2>
         </div>
-        <form action="process.php" method="POST">
+        <form id="formClientes" action="process.php" method="POST">
             <div class="form-group row">
-                <label for="dni" class="col-sm-4 col-form-label">Dni:</label>
+                <label for="dni" class="col-sm-4 col-form-label">DNI:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="dni" name="dni" placeholder="Ingrese su DNI" required>
                 </div>
@@ -148,10 +148,11 @@
             </div>
             <div class="d-flex justify-content-between">
                 <a href="clientes.html" type="button" class="btn btn-custom">Atrás</a>
-                <button  onclick="redirigir()" type="submit" class="btn btn-custom">Guardar</button>
+                <button type="submit" class="btn btn-custom">Guardar</button>
             </div>
         </form>
     </div>
+
 
     <script src="pasarela.js"></script>
 
@@ -190,11 +191,11 @@
         // Definir precios según el plan
         let precio = 0;
         if (plan === 'Fit') {
-            precio = 79.90*mes;
+            precio = 79.90 * mes;
         } else if (plan === 'Black') {
-            precio = 109.90*mes;
+            precio = 109.90 * mes;
         } else if (plan === 'Smart') {
-            precio = 89.90*mes;
+            precio = 89.90 * mes;
         }
         precio = precio.toFixed(2);
         // Guardar el precio en localStorage para pasarlo a la siguiente página
@@ -203,6 +204,77 @@
         // Redirigir a la página de detalles
         window.location.href = 'pasarela.html';
     }
+
+    // Validar si los campos están vacíos y evitar redirección
+    document.getElementById('formClientes').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío predeterminado del formulario
+
+        const dni = document.getElementById('dni').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const months = document.getElementById('months').value;
+
+        // Validar formato del correo electrónico
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Por favor, ingrese un correo electrónico válido');
+            return;
+        }
+
+        // Validar longitud del DNI (máximo 8 dígitos)
+        if (dni.length !== 8) {
+            alert('El DNI debe tener exactamente 8 dígitos');
+            return;
+        }
+
+        // Validar longitud del teléfono (exactamente 9 dígitos)
+        if (phone.replace(/\s/g, '').length !== 9) {
+            alert('El número de teléfono debe tener exactamente 9 dígitos');
+            return;
+        }
+
+        // Validar que los meses no superen el valor de 50
+        if (months > 60) {
+            alert('El número máximo de meses permitido es 50');
+            return;
+        }
+
+        // Si todo es válido, redirigir a pasarela.html
+        window.location.href = 'pasarela.html';
+    });
+
+    // Prevenir la entrada de símbolos en los campos de texto
+    document.getElementById('dni').addEventListener('input', function(event) {
+        this.value = this.value.replace(/[^0-9]/g, ''); // Solo números en DNI (máximo 8 dígitos)
+        if (this.value.length > 8) {
+            this.value = this.value.slice(0, 8); // Limitar a 8 dígitos
+        }
+    });
+
+    document.getElementById('name').addEventListener('input', function(event) {
+        this.value = this.value.replace(/[^a-zA-Z\s]/g, ''); // Solo letras y espacios en Nombre
+    });
+
+    document.getElementById('phone').addEventListener('input', function(event) {
+        let phoneValue = this.value.replace(/\s/g, ''); // Eliminar todos los espacios
+        phoneValue = phoneValue.replace(/[^0-9]/g, ''); // Eliminar todo lo que no sea número
+
+        // Agrupar en bloques de 3 números
+        if (phoneValue.length > 0) {
+            phoneValue = phoneValue.match(/.{1,3}/g).join(' ');
+        }
+
+        // Limitar el valor a 9 dígitos (3 bloques de 3 números)
+        this.value = phoneValue.slice(0, 11); // 11 incluye los 2 espacios
+    });
+
+    document.getElementById('months').addEventListener('input', function(event) {
+        const maxMonths = 60;
+        if (this.value > maxMonths) {
+            this.value = maxMonths; // Limitar a 60 meses
+        }
+    });
 </script>
 
 </html>
