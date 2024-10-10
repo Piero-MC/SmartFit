@@ -124,23 +124,23 @@
 
 
           <!-- Botón de Pago -->
-          <button type="submit" class="btn btn-success btn-block mt-3 btnPago">Pagar S/50.00</button>
+          <button onclick="comprar()" id="btnCompra" type="submit" class="btn btn-success btn-block mt-3 btnPago">Pagar S/50.00</button>
 
-
+          <button onclick="comprar()" id="btnCompra" type="submit" class="btn btn-success btn-block mt-3 btnPagoEf">Pagar en Efectivo</button>
+        
           <!-- Iconos de tarjetas -->
           <div class="text-center">
-            <img class="targets" src="/images/targetsIcons/visaIcon.png" alt="Visa">
-            <img class="targets" src="/images/targetsIcons/masterCardIcon.png" alt="MasterCard">
-            <img class="targets" src="/images/targetsIcons/american_ex_icon.png" alt="American Express">
+            <img class="targets"
+              src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
+              alt="Visa">
+            <img class="targets" src="https://static-00.iconduck.com/assets.00/mastercard-icon-2048x1587-tygju446.png"
+              alt="MasterCard">
+            <img class="targets" src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="American Express">
           </div>
         </div>
       </div>
     </form>
-    <div class="container" style="width: 300px;">
-      <form class="pagoEfectivo">
-        <button type="submit" class="btn btn-success btn-block mt-3 btnPagoEf">Pagar en Efectivo</button>
-      </form>
-    </div>
+    
     <div id="result" class="result mt-3"></div>
   </div>
 
@@ -172,6 +172,18 @@
     // Redirigir al usuario a la página de inicio de sesión o de inicio
     window.location.href = 'index.html';
   });
+  // Obtener el precio almacenado en localStorage
+  const precio = localStorage.getItem('precioSeleccionado');
+  
+  // Mostrar el precio en el botón
+  const btnCompra = document.getElementById('btnCompra');
+  btnCompra.innerText = `Pagar  S/${precio}`;
+
+  // Añadir evento al botón para mostrar la alerta y redirigir
+  function comprar() {
+    alert('Compra realizada con éxito');
+    window.location.href = 'clientes.html'; // Redirige a la página final
+  }
 </script>
 
 </html>
