@@ -36,7 +36,17 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
+<style>
+  
 
+.table thead th {
+    position: sticky;
+    top: 0; /* Mantiene el encabezado en la parte superior del contenedor */
+    z-index: 10; /* Asegura que el encabezado esté por encima del contenido de la tabla */
+    background-color: #343a40; /* Color de fondo para el encabezado */
+    color: white; /* Color del texto del encabezado */
+}
+</style>
 <body class="sub_page">
 
   <div class="hero_area">

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${client.membresia}</td>
                     <td>${client.meses}</td>
                     <td>${client.fechaFin}</td>
-                    <td><a href="renovacion.html">renovar</a></td>
+                    <td><a href="renovacion.html" class="btn-renew" data-id="1">renovar</a></td>
                 </tr>
             `;
             clientTableBody.innerHTML += row;

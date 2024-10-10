@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasarela</title>
+    <title>Registrar Cliente</title>
     <link rel="icon" href="images/iconSF.png" type="image/png">
     <link rel="stylesheet" href="pasarela.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -37,9 +37,9 @@
 </head>
 
 <body>
-    <div class="hero_area">
+    <div class="hero_area c">
         <!-- header section starts -->
-        <header class="header_section">
+        <header class="header_section c">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
                     <a class="navbar-brand" href="dashboard.html">
@@ -97,7 +97,7 @@
     </div>
 
 
-    <div class="container fade-in mt-5">
+    <div class="container fade-in mt-5 c">
         <div class="heading_container" style="margin-bottom: 20px;">
             <h2>Registrar Clientes</h2>
         </div>
@@ -153,6 +153,84 @@
         </form>
     </div>
 
+    <!-- Div oculto que aparece al dar clic en Guardar -->
+    <div id="confirmationModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="padding: 20px; text-align: center;">
+            <div class="container mt-5 pasarela">
+                <form id="paymentForm" class="mt-4" style="border-radius: 20px;">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="cnt_img">
+                                <img src="images/Smart_Fit_logo.svg.png" class="smartfitLogo" alt="Logo Smart Fit">
+                            </div>
+
+                            <!-- Número de Tarjeta -->
+                            <div class="form-group">
+                                <input type="text" id="cardNumber" class="form-control" placeholder="Número de Tarjeta"
+                                    required>
+                            </div>
+
+                            <!-- Fecha de Vencimiento y CVV en una sola línea -->
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <input type="text" id="expiryDate" class="form-control" placeholder="MM/AA"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="cvv" class="form-control" placeholder="CVV" maxlength="3"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- Nombre y Apellido en una sola línea -->
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <input type="text" id="cardholderName" class="form-control" placeholder="Nombre"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="cardholderSurname" class="form-control"
+                                        placeholder="Apellido" required>
+                                </div>
+                            </div>
+
+                            <!-- Correo Electrónico -->
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" placeholder="Correo Electrónico"
+                                    required>
+                            </div>
+
+
+                            <!-- Botón de Pago -->
+                            <a href="clientes.html" id="btnCompra" type="submit"
+                                class="btn btn-success btn-block mt-3 btnPago">Pagar S/50.00</a>
+
+                            <a href="clientes.html" id="btnCompra" type="submit"
+                                class="btn btn-success btn-block mt-3 btnPagoEf">Pagar en Efectivo</a>
+
+                            <!-- Iconos de tarjetas -->
+                            <div class="text-center">
+                                <img class="targets"
+                                    src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
+                                    alt="Visa">
+                                <img class="targets"
+                                    src="https://static-00.iconduck.com/assets.00/mastercard-icon-2048x1587-tygju446.png"
+                                    alt="MasterCard">
+                                <img class="targets" src="https://cdn-icons-png.flaticon.com/512/349/349228.png"
+                                    alt="American Express">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="result" class="result mt-3"></div>
+            </div>
+            <a id="pagarButton" class="btn btn-custom">Volver</a>
+        </div>
+    </div>
+
 
     <script src="pasarela.js"></script>
 
@@ -183,30 +261,10 @@
         window.location.href = 'index.html';
     });
 
-    function redirigir() {
-        // Obtener el valor seleccionado
-        const plan = document.getElementById('subscription').value;
-        const mes = document.getElementById('months').value;
-
-        // Definir precios según el plan
-        let precio = 0;
-        if (plan === 'Fit') {
-            precio = 79.90 * mes;
-        } else if (plan === 'Black') {
-            precio = 109.90 * mes;
-        } else if (plan === 'Smart') {
-            precio = 89.90 * mes;
-        }
-        precio = precio.toFixed(2);
-        // Guardar el precio en localStorage para pasarlo a la siguiente página
-        localStorage.setItem('precioSeleccionado', precio);
-
-        // Redirigir a la página de detalles
-        window.location.href = 'pasarela.html';
-    }
 
     // Validar si los campos están vacíos y evitar redirección
-    document.getElementById('formClientes').addEventListener('submit', function(event) {
+
+    document.getElementById('formClientes').addEventListener('submit', function (event) {
         event.preventDefault(); // Prevenir el envío predeterminado del formulario
 
         const dni = document.getElementById('dni').value;
@@ -214,6 +272,8 @@
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
         const months = document.getElementById('months').value;
+        const subscription = document.getElementById('subscription').value;
+
 
         // Validar formato del correo electrónico
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -240,23 +300,49 @@
             return;
         }
 
-        // Si todo es válido, redirigir a pasarela.html
-        window.location.href = 'pasarela.html';
+        // Si todo es válido, mostrar el div de confirmación y deshabilitar la página
+        document.getElementById('confirmationModal').style.display = 'flex'; // Mostrar el modal
+        document.querySelector('.c').style.opacity = '0.5'; // Hacer opaco el contenido
+
+        // Precios por tipo de membresía
+        let price = 0;
+        if (subscription === 'Fit') {
+            price = 79.90;
+        } else if (subscription === 'Black') {
+            price = 109.90;
+        } else if (subscription === 'Smart') {
+            price = 89.90;
+        }
+        const total = price * months; // Cálculo del total
+        localStorage.setItem('total', total); // Guardar en localStorage
+
+        // Mostrar el total en el enlace del div oculto
+        document.getElementById('btnCompra').textContent = `Pagar: S/ ${total.toFixed(2)}`;
+
+    });
+
+    document.getElementById('pagarButton').addEventListener('click', function () {
+        // Ocultar el modal y restaurar la página
+        document.getElementById('confirmationModal').style.display = 'none'; // Ocultar el modal
+        document.querySelector('.c').style.opacity = '1'; // Restaurar la opacidad
+        document.querySelectorAll('button, a').forEach(function (el) {
+            el.disabled = false; // Habilitar todos los botones y enlaces
+        });
     });
 
     // Prevenir la entrada de símbolos en los campos de texto
-    document.getElementById('dni').addEventListener('input', function(event) {
+    document.getElementById('dni').addEventListener('input', function (event) {
         this.value = this.value.replace(/[^0-9]/g, ''); // Solo números en DNI (máximo 8 dígitos)
         if (this.value.length > 8) {
             this.value = this.value.slice(0, 8); // Limitar a 8 dígitos
         }
     });
 
-    document.getElementById('name').addEventListener('input', function(event) {
+    document.getElementById('name').addEventListener('input', function (event) {
         this.value = this.value.replace(/[^a-zA-Z\s]/g, ''); // Solo letras y espacios en Nombre
     });
 
-    document.getElementById('phone').addEventListener('input', function(event) {
+    document.getElementById('phone').addEventListener('input', function (event) {
         let phoneValue = this.value.replace(/\s/g, ''); // Eliminar todos los espacios
         phoneValue = phoneValue.replace(/[^0-9]/g, ''); // Eliminar todo lo que no sea número
 
@@ -269,12 +355,15 @@
         this.value = phoneValue.slice(0, 11); // 11 incluye los 2 espacios
     });
 
-    document.getElementById('months').addEventListener('input', function(event) {
+    document.getElementById('months').addEventListener('input', function (event) {
         const maxMonths = 60;
         if (this.value > maxMonths) {
-            this.value = maxMonths; // Limitar a 60 meses
+            this.value = maxMonths; // Limitar a 50 meses
         }
     });
+    // Mostrar el total en el botón del div oculto
+
+
 </script>
 
 </html>
