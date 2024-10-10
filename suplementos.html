@@ -217,8 +217,24 @@
 </section>
 
 <script>
-    import s from 'suplementos.json';
-    const suplementosJSON = JSON.stringify(s); 
+    document.getElementById('codigo').addEventListener('input', function (event) {
+        this.value = this.value.replace(/[^a-zA-Z0-9\s]/g, ''); // Solo letras y espacios en Nombreproducto
+    });
+
+    document.getElementById('producto').addEventListener('input', function (event) {
+        this.value = this.value.replace(/[^a-zA-Z0-9\s]/g, ''); // Solo letras y espacios en Nombre
+    });
+
+    document.getElementById('cantidad').addEventListener('input', function (event) {
+        let phoneValue = this.value.replace(/\s/g, ''); // Eliminar todos los espacios
+        phoneValue = phoneValue.replace(/[^0-9]/g, ''); // Eliminar todo lo que no sea número
+    });
+
+    document.getElementById('precio').addEventListener('input', function (event) {
+      this.value = this.value.replace(/[^0-9.]/g, ''); // Permitir números y decimales en el campo de precio
+
+    });
+    
     let suplementos = JSON.parse(localStorage.getItem('suplementos')) || [];
     let suplementoId = suplementos.length > 0 ? suplementos[suplementos.length - 1].id + 1 : 1;
     let editingIndex = -1;
