@@ -18,8 +18,40 @@
       "dni":"98765432"
     },
     {
-      "username": "Paco",
-      "password": "123"
+      "nombre":"Deysi Torres",
+      "username": "Deysi",
+      "password": "123",
+      "numeroTelf":"98467215",
+      "direccion":"lima",
+      "correo":"example@gmail.com",
+      "dni":"12345678"
+    },
+    {
+      "nombre":"Marco León",
+      "username": "Marco",
+      "password": "123",
+      "numeroTelf":"98467215",
+      "direccion":"lima",
+      "correo":"example@gmail.com",
+      "dni":"12345678"
+    },
+    {
+      "nombre":"Johan Cruz",
+      "username": "Johan",
+      "password": "123",
+      "numeroTelf":"98467215",
+      "direccion":"lima",
+      "correo":"example@gmail.com",
+      "dni":"12345678"
+    },
+    {
+      "nombre":"Miguel Aburto",
+      "username": "Miguel",
+      "password": "123",
+      "numeroTelf":"98467215",
+      "direccion":"lima",
+      "correo":"example@gmail.com",
+      "dni":"12345678"
     }
 
   ]
