@@ -2,8 +2,8 @@
     [
         {
             "id":"1",
-            "nombre":"paco",
-            "dni":"75631985",
+            "nombre":"Lucia de la Cruz",
+            "dni":"12345678",
             "correo":"example@gmail.com",
             "numTelf":"987632145",
             "membresia":"Fit",
@@ -13,7 +13,7 @@
       
       {
             "id":"2",
-            "nombre":"lucia",
+            "nombre":"Paco",
             "dni":"74569321",
             "correo":"lucia@gmail.com",
             "numTelf":"986523147",
@@ -24,7 +24,7 @@
       
       {
             "id":"3",
-            "nombre":"javier",
+            "nombre":"Javier Pardo",
             "dni":"76234158",
             "correo":"javier@gmail.com",
             "numTelf":"965874123",
