@@ -270,7 +270,11 @@
                 fila.innerHTML = `
             <td>${index + 1}</td>
             <td>${usuario.nombre}</td>
+<<<<<<< HEAD
             <td>${usuario.username}</td>
+=======
+            <td>${usuario.usuario}</td>
+>>>>>>> 099c13b2d8abd2a3edc536536f7adea29f27e021
             <td>${usuario.password}</td>
             <td>${usuario.dni}</td>
             <td>${usuario.correo}</td>
@@ -291,7 +295,11 @@
             event.preventDefault();
             const id = document.getElementById('userId').value;
             const nombre = document.getElementById('nombre').value;
+<<<<<<< HEAD
             const username = document.getElementById('usuario').value;
+=======
+            const usuario = document.getElementById('usuario').value;
+>>>>>>> 099c13b2d8abd2a3edc536536f7adea29f27e021
             const password = document.getElementById('password').value;
             const dni = document.getElementById('dni').value;
             const correo = document.getElementById('correo').value;
@@ -299,7 +307,11 @@
             const telefono = document.getElementById('telefono').value;
             const estado = document.getElementById('estado').value; // Obtener estado
 
+<<<<<<< HEAD
             const nuevoUsuario = { nombre, username, password, dni, correo, direccion, telefono, estado };
+=======
+            const nuevoUsuario = { nombre, usuario, password, dni, correo, direccion, telefono, estado };
+>>>>>>> 099c13b2d8abd2a3edc536536f7adea29f27e021
             const usuarios = obtenerUsuarios();
 
             if (id === '') {
