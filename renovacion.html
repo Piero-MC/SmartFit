@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renovar</title>
+    <link rel="icon" href="images/iconSF.png" type="image/png">
+    <link rel="stylesheet" href="pasarela.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap"
+        rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importar Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        .btn-custom {
+            background-color: #DAA520;
+            /* Color dorado para el botón */
+            color: #ffffff;
+            /* Texto negro en el botón */
+        }
+
+        .btn-custom:hover {
+            background-color: #FFD700;
+            /* Color dorado más claro al pasar el mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero_area c">
+        <!-- header section starts -->
+        <header class="header_section c">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
+                    <a class="navbar-brand" href="dashboard.html">
+                        <span>
+                            <img src="images/logoSF.png" style="width: 250px;" alt="logo">
+                        </span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav flex-column lista-nav">
+                            <li class="nav-item li-nav">
+                                <a class="nav-link" href="dashboard.html">Dashboards<span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item li-nav">
+                                <a class="nav-link" href="ventas.html">Ventas</a>
+                            </li>
+                            <li class="nav-item li-nav">
+                                <a class="nav-link" href="suplementos.html">Suplementos</a>
+                            </li>
+                            <li class="nav-item li-nav">
+                                <a class="nav-link" href="membresias.html">Membresías</a>
+                            </li>
+                            <li class="nav-item li-active">
+                                <a class="nav-link" href="clientes.html">Clientes</a>
+                            </li>
+                            <li class="nav-item dropdown li-nav">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span id="welcomeUser">
+                                        <p class="welcomeUser" id="welcomeUser"></p>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item logout-nav" href="#" id="logout">Cerrar Sesión</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="quote_btn-container">
+
+                        <form class="form-inline">
+                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- end header section -->
+    </div>
+
+
+    <div class="container fade-in mt-5 c">
+        <div class="heading_container" style="margin-bottom: 20px;">
+            <h2>Renovar Membresía</h2>
+        </div>
+        <form id="formClientes" action="process.php" method="POST">
+           
+            <div class="form-group row">
+                <label for="subscription" class="col-sm-4 col-form-label">Membresía:</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="subscription" name="membresía" required>
+                        <option value="Black">Black</option>
+                        <option value="Fit">Fit</option>
+                        <option value="Smart">Smart</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="months" class="col-sm-4 col-form-label">Meses:</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="months" name="months" placeholder="Ingrese Meses"
+                        required>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a href="clientes.html" type="button" class="btn btn-custom">Atrás</a>
+                <button type="submit" class="btn btn-custom">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Div oculto que aparece al dar clic en Guardar -->
+    <div id="confirmationModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="padding: 20px; text-align: center;">
+            <div class="container mt-5 pasarela">
+                <form id="paymentForm" class="mt-4" style="border-radius: 20px;">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="cnt_img">
+                                <img src="images/Smart_Fit_logo.svg.png" class="smartfitLogo" alt="Logo Smart Fit">
+                            </div>
+
+                            <!-- Número de Tarjeta -->
+                            <div class="form-group">
+                                <input type="text" id="cardNumber" class="form-control" placeholder="Número de Tarjeta"
+                                    required>
+                            </div>
+
+                            <!-- Fecha de Vencimiento y CVV en una sola línea -->
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <input type="text" id="expiryDate" class="form-control" placeholder="MM/AA"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="cvv" class="form-control" placeholder="CVV" maxlength="3"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- Nombre y Apellido en una sola línea -->
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <input type="text" id="cardholderName" class="form-control" placeholder="Nombre"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="cardholderSurname" class="form-control"
+                                        placeholder="Apellido" required>
+                                </div>
+                            </div>
+
+                            <!-- Correo Electrónico -->
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" placeholder="Correo Electrónico"
+                                    required>
+                            </div>
+
+
+                            <!-- Botón de Pago -->
+                            <a href="clientes.html" id="btnCompra" type="submit"
+                                class="btn btn-success btn-block mt-3 btnPago">Pagar S/50.00</a>
+
+                            <a href="clientes.html" id="btnCompra" type="submit"
+                                class="btn btn-success btn-block mt-3 btnPagoEf">Pagar en Efectivo</a>
+
+                            <!-- Iconos de tarjetas -->
+                            <div class="text-center">
+                                <img class="targets"
+                                    src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
+                                    alt="Visa">
+                                <img class="targets"
+                                    src="https://static-00.iconduck.com/assets.00/mastercard-icon-2048x1587-tygju446.png"
+                                    alt="MasterCard">
+                                <img class="targets" src="https://cdn-icons-png.flaticon.com/512/349/349228.png"
+                                    alt="American Express">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="result" class="result mt-3"></div>
+            </div>
+            <a id="pagarButton" class="btn btn-custom">Volver</a>
+        </div>
+    </div>
+
+
+    <script src="pasarela.js"></script>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const content = document.querySelector('.fade-in');
+        content.classList.add('visible'); // Añade la clase para iniciar la animación
+    });
+
+    const username = localStorage.getItem('username');
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const username = localStorage.getItem('username');
+        document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
+    });
+
+    // Manejar el cierre de sesión
+    document.getElementById('logout').addEventListener('click', function () {
+        // Eliminar el nombre de usuario de localStorage
+        localStorage.removeItem('username');
+
+        // Redirigir al usuario a la página de inicio de sesión o de inicio
+        window.location.href = 'index.html';
+    });
+
+
+    // Validar si los campos están vacíos y evitar redirección
+
+    document.getElementById('formClientes').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevenir el envío predeterminado del formulario
+
+        const months = document.getElementById('months').value;
+        const subscription = document.getElementById('subscription').value;
+
+
+        // Validar que los meses no superen el valor de 50
+        if (months > 60) {
+            alert('El número máximo de meses permitido es 50');
+            return;
+        }
+
+        // Si todo es válido, mostrar el div de confirmación y deshabilitar la página
+        document.getElementById('confirmationModal').style.display = 'flex'; // Mostrar el modal
+        document.querySelector('.c').style.opacity = '0.5'; // Hacer opaco el contenido
+
+        // Precios por tipo de membresía
+        let price = 0;
+        if (subscription === 'Fit') {
+            price = 79.90;
+        } else if (subscription === 'Black') {
+            price = 109.90;
+        } else if (subscription === 'Smart') {
+            price = 89.90;
+        }
+        const total = price * months; // Cálculo del total
+        localStorage.setItem('total', total); // Guardar en localStorage
+
+        // Mostrar el total en el enlace del div oculto
+        document.getElementById('btnCompra').textContent = `Pagar: S/ ${total.toFixed(2)}`;
+
+    });
+
+    document.getElementById('pagarButton').addEventListener('click', function () {
+        // Ocultar el modal y restaurar la página
+        document.getElementById('confirmationModal').style.display = 'none'; // Ocultar el modal
+        document.querySelector('.c').style.opacity = '1'; // Restaurar la opacidad
+        document.querySelectorAll('button, a').forEach(function (el) {
+            el.disabled = false; // Habilitar todos los botones y enlaces
+        });
+    });
+
+
+
+
+    document.getElementById('months').addEventListener('input', function (event) {
+        const maxMonths = 60;
+        if (this.value > maxMonths) {
+            this.value = maxMonths; // Limitar a 50 meses
+        }
+    });
+    // Mostrar el total en el botón del div oculto
+
+
+</script>
+
+</html>

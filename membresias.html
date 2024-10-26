@@ -39,7 +39,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="dashboard.html">
             <span>
               <img src="images/logoSF.png" style="width: 250px;" alt="logo">
             </span>
@@ -50,21 +50,32 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav flex-column w-100">
-              <li class="nav-item active">
+            <ul class="navbar-nav flex-column lista-nav">
+              <li class="nav-item li-nav">
                 <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item li-nav">
+                <a class="nav-link" href="ventas.html">Ventas</a>
+              </li>
+              <li class="nav-item li-nav">
                 <a class="nav-link" href="suplementos.html">Suplementos</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item li-active">
                 <a class="nav-link" href="membresias.html">Membresías</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item li-nav">
                 <a class="nav-link" href="clientes.html">Clientes</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">User</a>
+              <li class="nav-item dropdown li-nav">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span id="welcomeUser">
+                    <p class="welcomeUser" id="welcomeUser"></p>
+                  </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                  <a class="dropdown-item logout-nav" href="#" id="logout">Cerrar Sesión</a>
+                </div>
               </li>
             </ul>
           </div>
@@ -80,8 +91,6 @@
     <!-- end header section -->
   </div>
 
-
-
   <!-- membresías section -->
 
   <section class="price_section layout_padding fade-in">
@@ -96,7 +105,6 @@
           <div class="pricing-plan" style="padding: 0;">
             <h2>PLAN <strong>Black</strong></h2>
             <p class="price">109.90 PEN/mes</p>
-            <button class="btn">Elegir plan</button>
             <br><br>
             <ul>
               <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Entrena en todos los gimnasios de
@@ -121,7 +129,6 @@
           <div class="pricing-plan featured">
             <h2>PLAN <strong>Fit</strong></h2>
             <p class="price"> 79.90 PEN/mes</p>
-            <button class="btn">Elegir plan</button>
             <br><br>
             <ul style="list-style-type: none;">
               <li><img src="images/check.png" style="width: 20px; margin-right: 10px;">Acceso ilimitado a todas las
@@ -140,7 +147,6 @@
           <div class="pricing-plan">
             <h2>Plan <strong>Smart</strong></h2>
             <p class="price"> 89.90 PEN/mes</p>
-            <button class="btn">Elegir plan</button>
             <br><br>
             <ul style="list-style-type: none;">
               <li><img src="images/check.png" style="width: 20px; margin-right: 10px;"> Acceso ilimitado a todas las
@@ -169,6 +175,22 @@
     const content = document.querySelector('.fade-in');
     content.classList.add('visible'); // Añade la clase para iniciar la animación
   });
+  
+  const username = localStorage.getItem('username');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const username = localStorage.getItem('username');
+    document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
+  });
+
+    // Manejar el cierre de sesión
+    document.getElementById('logout').addEventListener('click', function () {
+      // Eliminar el nombre de usuario de localStorage
+      localStorage.removeItem('username');
+      
+      // Redirigir al usuario a la página de inicio de sesión o de inicio
+      window.location.href = 'index.html';
+    });
 </script>
 
 </html>

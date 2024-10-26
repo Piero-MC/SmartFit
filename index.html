@@ -7,61 +7,114 @@
   <title>login</title>
   <link rel="icon" href="images/iconSF.png" type="image/png">
   <link rel="stylesheet" href="login.css">
-  
+
   <link href="css/style.css" rel="stylesheet" />
-   <!-- bootstrap core css -->
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-   <!-- Importar Bootstrap JS y dependencias -->
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Importar Bootstrap JS y dependencias -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
   <form id="loginForm" class="mt-4 fade-in">
     <div class="card">
-        <div class="card-body">
-            <div class="cnt_img">
-                <img src="images/Smart_Fit_logo.svg.png" class="smartfitLogo" alt="Logo Smart Fit">
-            </div>
-
-            <!-- Usuario -->
-            <div class="form-group">
-                <input type="text" id="username" class="form-control" placeholder="Usuario" required>
-            </div>
-
-            <!-- Contraseña -->
-            <div class="form-group">
-                <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
-            </div>
-
-            <!-- Botón de Login -->
-            <button type="submit" class="btn btn-success btn-block mt-3 btnLogin">Iniciar Sesión</button>
+      <div class="card-body">
+        <div class="cnt_img">
+          <img src="images/Smart_Fit_logo.svg.png" class="smartfitLogo" alt="Logo Smart Fit">
         </div>
+
+        <!-- Usuario -->
+        <div class="form-group">
+          <input type="text" id="username" class="form-control" placeholder="Usuario" required>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+          <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
+        </div>
+
+        <!-- Botón de Login -->
+        <button type="submit" class="btn btn-success btn-block mt-3 btnLogin">Iniciar Sesión</button>
+      </div>
     </div>
-</form>
+  </form>
 </body>
 <script>
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!localStorage.getItem('usuarios')) {
+      const usuarios = [
+        { nombre:'Administrador', username:'admin', password:'admin', dni:'12345678', correo:'admin@gmail.com', direccion:'Lima', telefono:'999999999', estado:'Activo' },
+        { nombre:'Piero Antonio', username:'Piero', password:'123', dni:'12345678', correo:'piero@gmail.com', direccion:'Lima', telefono:'999999999', estado:'Activo' },
+        { nombre:'Deysi Torres', username:'Deysi', password:'123', dni:'12345678', correo:'deysi@gmail.com', direccion:'Lima', telefono:'999999999', estado:'Activo' },
+        { nombre:'Marco Leon', username:'Marco', password:'123', dni:'12345678', correo:'marco@gmail.com', direccion:'Lima', telefono:'999999999', estado:'Activo' },
+        { nombre:'Johan Cruz', username:'Johan', password:'123', dni:'12345678', correo:'johan@gmail.com', direccion:'Lima', telefono:'999999999', estado:'Activo' },
+        { nombre:'Miguel Aburto', username:'Miguel', password:'123', dni:'12345678', correo:'miguel@gmail.com', direccion:'Lima', telefono:'999999999', estado:'Activo' }
+        // Agrega más usuarios si es necesario
+      ];
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    }
+    const content = document.querySelector('.fade-in');
+    content.classList.add('visible'); // Añade la clase para iniciar la animación
+  });
+  document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault(); // Prevenir el comportamiento por defecto del form
-    
+
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
-    
+
     // Validar que ambos campos no estén vacíos
     if (username.trim() === '' || password.trim() === '') {
-        alert('Por favor, complete ambos campos.');
-        return;
+      alert('Por favor, complete ambos campos.');
+      return;
     }
 
-    // Redirigir al dashboard si todo es correcto
-    window.location.href = 'dashboard.html';
-});
-document.addEventListener('DOMContentLoaded', function () {
+
+    // Obtener los usuarios almacenados en localStorage
+    const usuarios = JSON.parse(localStorage.getItem('usuarios'));
+
+    // Obtener el archivo JSON y realizar la validación para otros usuarios
+    // Comprobar si las credenciales coinciden
+    const usuario = usuarios.find(usr => usr.username === username && usr.password === password);
+
+    if (usuario) {
+      // Guardar el nombre de usuario en localStorage y redirigir al dashboard
+      localStorage.setItem('username', username);
+
+      // Redirigir a la página de administración o al dashboard según el usuario
+      if (username === 'admin') {
+        window.location.href = 'admin.html';
+      } else {
+        window.location.href = 'dashboard.html';
+      }
+    } else {
+      alert('Credenciales incorrectas, por favor intente nuevamente.');
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
     const content = document.querySelector('.fade-in');
     content.classList.add('visible'); // Añade la clase para iniciar la animación
   });
 </script>
+<script>
+  // Función para validar y eliminar caracteres no permitidos
+  function validateInput(event) {
+    const regex = /^[a-zA-Z0-9]*$/; // Permitir solo letras y números
+    const value = event.target.value;
+
+    // Reemplazar caracteres no válidos
+    if (!regex.test(value)) {
+      event.target.value = value.replace(/[^a-zA-Z0-9]/g, ''); // Remover caracteres no válidos
+    }
+  }
+
+  // Asignar la función de validación a los eventos de entrada
+  document.getElementById('username').addEventListener('input', validateInput);
+  document.getElementById('password').addEventListener('input', validateInput);
+</script>
+
 </html>

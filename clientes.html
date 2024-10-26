@@ -36,7 +36,17 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
+<style>
+  
 
+.table thead th {
+    position: sticky;
+    top: 0; /* Mantiene el encabezado en la parte superior del contenedor */
+    z-index: 10; /* Asegura que el encabezado esté por encima del contenido de la tabla */
+    background-color: #343a40; /* Color de fondo para el encabezado */
+    color: white; /* Color del texto del encabezado */
+}
+</style>
 <body class="sub_page">
 
   <div class="hero_area">
@@ -44,7 +54,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="dashboard.html">
             <span>
               <img src="images/logoSF.png" style="width: 250px;" alt="logo">
             </span>
@@ -53,28 +63,39 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-  
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav flex-column w-100">
-              <li class="nav-item active">
+            <ul class="navbar-nav flex-column lista-nav">
+              <li class="nav-item li-nav">
                 <a class="nav-link" href="dashboard.html">Dashboards<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item li-nav">
+                <a class="nav-link" href="ventas.html">Ventas</a>
+              </li>
+              <li class="nav-item li-nav">
                 <a class="nav-link" href="suplementos.html">Suplementos</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item li-nav">
                 <a class="nav-link" href="membresias.html">Membresías</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item li-active">
                 <a class="nav-link" href="clientes.html">Clientes</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">User</a>
+              <li class="nav-item dropdown li-nav">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span id="welcomeUser">
+                    <p class="welcomeUser" id="welcomeUser"></p>
+                  </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                  <a class="dropdown-item logout-nav" href="#" id="logout">Cerrar Sesión</a>
+                </div>
               </li>
             </ul>
           </div>
           <div class="quote_btn-container">
-  
+
             <form class="form-inline">
               <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
             </form>
@@ -94,45 +115,42 @@
         </h2>
       </div>
       <section class="contact_section layout_padding">
-        <div class="container my-5">
-          <div class="card">
-            <div class="card-header bg-dark text-white">
-              <h2 class="text-center mb-0">Clientes Registrados</h2>
-            </div>
-            <div class="card-body">
-              <!-- Buscador por DNI -->
-              <div class="row mb-4">
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-                    <input type="text" id="searchDni" class="form-control" placeholder="Buscar por DNI">
-                  </div>
-                </div>
-                <div class="col-md-6 text-end">
-                  <button class="btn btn-primary" id="registerClient"><i class="bi bi-plus-lg"></i> Registrar
-                    Cliente</button>
-                </div>
+        <div class="card-body">
+          <!-- Buscador por DNI -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                <input type="text" id="searchDni" class="form-control" placeholder="Buscar por DNI">
               </div>
+            </div>
+            <div class="col-md-6 text-end">
+              <a href="regCli.html" class="btn btn-primary" id="registerClient"><i class="bi bi-plus-lg"></i>
+                Registrar
+                Cliente</a>
+            </div>
+          </div>
 
-              <!-- Tabla de clientes -->
-              <div class="table-responsive">
-                <table class="table table-hover table-bordered table-striped align-middle">
-                  <thead class="table-dark">
-                    <tr>
-                      <th>ID</th>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>DNI</th>
-                      <th>Email</th>
-                      <th>Teléfono</th>
-                    </tr>
-                  </thead>
-                  <tbody id="clientTableBody">
-                    <!-- Filas de clientes se generarán dinámicamente -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <!-- Tabla de clientes -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle" style="cursor: default;">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>DNI</th>
+                  <th>Email</th>
+                  <th>Teléfono</th>
+                  <th>Membresía</th>
+                  <th>Meses</th>
+                  <th>Fecha-Fin</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="clientTableBody">
+                <!-- Filas de clientes se generarán dinámicamente -->
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -159,5 +177,23 @@
     const content = document.querySelector('.fade-in');
     content.classList.add('visible'); // Añade la clase para iniciar la animación
   });
+
+  const username = localStorage.getItem('username');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const username = localStorage.getItem('username');
+    document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
+  });
+
+  // Manejar el cierre de sesión
+  document.getElementById('logout').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
+
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
+  
 </script>
+
 </html>

@@ -1,0 +1,412 @@
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Clientes</title>
+    <link rel="icon" href="images/iconSF.png" type="image/png">
+
+    <!-- slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap"
+        rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importar Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="clientes.css">
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+</head>
+<style>
+    .container {
+        margin-top: 50px;
+        max-width: 1000px;
+        display: flex;
+        gap: 30px;
+    }
+
+    .scrollable-table {
+        max-height: 800px;
+        overflow-y: auto;
+        margin-top: 20px;
+    }
+
+    .scrollable-table thead th {
+        position: sticky;
+        top: 0;
+        background-color: #343a40;
+        color: white;
+        z-index: 10;
+    }
+
+    .btn-custom {
+        background-color: #000000;
+        color: #ffffff;
+        border-radius: 4px;
+    }
+
+    .btn-custom:hover {
+        background-color: #666666;
+        color: white;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        text-align: center;
+        padding: 12px 15px;
+        /* Aumentar padding para más espacio */
+    }
+
+    th {
+        white-space: nowrap;
+        /* Evita que el contenido de los encabezados se corte */
+    }
+
+    td {
+        word-wrap: break-word;
+        /* Permite que el texto se ajuste en varias líneas */
+    }
+
+    .table-header {
+        background-color: #DAA520;
+        color: #fff;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+    }
+
+    .table-striped tbody tr:nth-of-type(even) {
+        background-color: #e0e0e0;
+    }
+
+    .fade-in {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+        padding: 20px;
+    }
+
+    /* Ajustes de ancho de columnas específicas */
+    th:nth-child(7),
+    td:nth-child(7) {
+        width: 20%;
+        /* Más espacio para la columna de dirección */
+    }
+</style>
+
+<body>
+    <div class="hero_area">
+        <!-- header section starts -->
+        <header class="header_section">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container flex-column">
+                    <a class="navbar-brand">
+                        <span>
+                            <img src="images/logoSF.png" style="width: 250px;" alt="logo">
+                        </span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav flex-column lista-nav">
+                            <li class="nav-item li-active">
+                                <a class="nav-link" href="admin.html">Administrar Empleados<span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown li-nav">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span id="welcomeUser">
+                                        <p class="welcomeUser" id="welcomeUser">Bienvenido Admin</p>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item logout-nav" href="#" id="logout">Cerrar Sesión</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="quote_btn-container">
+
+                        <form class="form-inline">
+                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- end header section -->
+    </div>
+    <section class="fade-in">
+        <div class="heading_container" style="margin-top: 100px">
+            <h2>Nuestros <strong>Empleados</strong></h2>
+        </div>
+        <div class="container">
+
+            <form id="registroForm">
+                <input type="hidden" id="userId" name="userId">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese su usuario"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Ingrese su contraseña" required>
+                </div>
+                <div class="form-group">
+                    <label for="dni">DNI:</label>
+                    <input type="text" class="form-control" id="dni" name="dni" placeholder="Ingrese su DNI" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese su correo"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion"
+                        placeholder="Ingrese su dirección" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono"
+                        placeholder="Ingrese su teléfono" required>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select class="form-control" id="estado" name="estado" required>
+                        <option value="" disabled selected>Seleccione estado</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-custom">Registrar</button>
+            </form>
+            <div class="scrollable-table">
+                <table class="table table-bordered table-striped align-middle" style="cursor: default; width:900px;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Contraseña</th>
+                            <th>DNI</th>
+                            <th>Correo</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usuariosTableBody">
+                        <!-- Aquí se cargará dinámicamente el contenido de la tabla -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Al cargar la página, obtén los usuarios guardados
+        document.addEventListener('DOMContentLoaded', function () {
+            cargarUsuarios();
+        });
+
+        // Función para guardar los usuarios en localStorage
+        function guardarUsuarios(usuarios) {
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        }
+
+        // Función para obtener los usuarios de localStorage
+        function obtenerUsuarios() {
+            return JSON.parse(localStorage.getItem('usuarios')) || [];
+        }
+
+        // Función para cargar usuarios en la tabla
+        function cargarUsuarios() {
+            const usuarios = obtenerUsuarios();
+            const usuariosTableBody = document.getElementById('usuariosTableBody');
+            usuariosTableBody.innerHTML = ''; // Limpiar tabla
+            usuarios.forEach((usuario, index) => {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${usuario.nombre}</td>
+            <td>${usuario.username}</td>
+            <td>${usuario.password}</td>
+            <td>${usuario.dni}</td>
+            <td>${usuario.correo}</td>
+            <td>${usuario.direccion}</td>
+            <td>${usuario.telefono}</td>
+            <td>${usuario.estado}</td>
+            <td>
+                <button class="btn btn-primary" onclick="editarUsuario(${index})">Editar</button>
+                <button class="btn btn-danger" onclick="eliminarUsuario(${index})">Eliminar</button>
+            </td>
+        `;
+                usuariosTableBody.appendChild(fila);
+            });
+        }
+
+        // Función para agregar o editar usuario
+        document.getElementById('registroForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const id = document.getElementById('userId').value;
+            const nombre = document.getElementById('nombre').value;
+            const username = document.getElementById('usuario').value;
+            const password = document.getElementById('password').value;
+            const dni = document.getElementById('dni').value;
+            const correo = document.getElementById('correo').value;
+            const direccion = document.getElementById('direccion').value;
+            const telefono = document.getElementById('telefono').value;
+            const estado = document.getElementById('estado').value; // Obtener estado
+
+            const nuevoUsuario = { nombre, username, password, dni, correo, direccion, telefono, estado };
+            const usuarios = obtenerUsuarios();
+
+            if (id === '') {
+                // Agregar nuevo usuario
+                usuarios.push(nuevoUsuario);
+            } else {
+                // Editar usuario existente
+                usuarios[id] = nuevoUsuario;
+                document.getElementById('userId').value = ''; // Resetear ID
+            }
+
+            // Guardar usuarios y recargar tabla
+            guardarUsuarios(usuarios);
+            cargarUsuarios();
+
+            // Limpiar formulario
+            document.getElementById('registroForm').reset();
+        });
+
+        // Función para cargar usuario en el formulario para editar
+        function editarUsuario(index) {
+            const usuarios = obtenerUsuarios();
+            const usuario = usuarios[index];
+
+            document.getElementById('userId').value = index;
+            document.getElementById('nombre').value = usuario.nombre;
+            document.getElementById('usuario').value = usuario.usuario;
+            document.getElementById('password').value = usuario.password;
+            document.getElementById('dni').value = usuario.dni;
+            document.getElementById('correo').value = usuario.correo;
+            document.getElementById('direccion').value = usuario.direccion;
+            document.getElementById('telefono').value = usuario.telefono;
+            document.getElementById('estado').value = usuario.estado; // Cargar estado
+        }
+
+        // Función para eliminar usuario
+        function eliminarUsuario(index) {
+            const usuarios = obtenerUsuarios();
+            usuarios.splice(index, 1); // Eliminar usuario
+            guardarUsuarios(usuarios);
+            cargarUsuarios(); // Recargar tabla
+        }
+
+    </script>
+    <script>
+        window.onload = function () {
+            document.querySelector('.fade-in').classList.add('visible');
+        };
+
+        const username = localStorage.getItem('username');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const username = localStorage.getItem('username');
+            document.getElementById('welcomeUser').textContent = 'Bienvenido, Admin';
+        });
+
+        // Manejar el cierre de sesión
+        document.getElementById('logout').addEventListener('click', function () {
+            // Eliminar el nombre de usuario de localStorage
+            localStorage.removeItem('username');
+
+            // Redirigir al usuario a la página de inicio de sesión o de inicio
+            window.location.href = 'index.html';
+        });
+
+    </script>
+    <script>
+        // Validaciones en tiempo real
+        document.getElementById('nombre').addEventListener('input', function (e) {
+            const regex = /^[a-zA-Z\s]*$/;
+            if (!regex.test(e.target.value)) {
+                e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, ''); // Remover caracteres no válidos
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function (e) {
+            if (e.target.value.length > 20) {
+                e.target.value = e.target.value.slice(0, 20); // Limitar a 20 caracteres
+            }
+        });
+
+        document.getElementById('dni').addEventListener('input', function (e) {
+            const regex = /^[0-9]*$/;
+            if (!regex.test(e.target.value) || e.target.value.length > 8) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 8); // Limitar a 8 números
+            }
+        });
+
+        document.getElementById('correo').addEventListener('input', function (e) {
+            if (e.target.value.length > 30) {
+                e.target.value = e.target.value.slice(0, 30); // Limitar a 30 caracteres
+            }
+        });
+
+        document.getElementById('direccion').addEventListener('input', function (e) {
+            const palabras = e.target.value.trim().split(/\s+/);
+            if (palabras.length > 20) {
+                e.target.value = palabras.slice(0, 20).join(' '); // Limitar a 20 palabras
+            }
+        });
+
+        document.getElementById('telefono').addEventListener('input', function (e) {
+            const regex = /^[0-9]*$/;
+            if (!regex.test(e.target.value) || e.target.value.length > 9) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 9); // Limitar a 9 números
+            }
+        });
+    </script>
+</body>
+</body>

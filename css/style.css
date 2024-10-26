@@ -48,7 +48,36 @@ body {
   background: -webkit-gradient(linear, left top, right top, from(#fb930a), to(#f5e47b));
   background: linear-gradient(to right, #fb930a, #f5e47b);
 }
+.logout-nav{
+  width: 100px;
+  margin: 0;
+  padding: 0;
+  height: 20;
+}
+.li-active{
+  background-color:  #717171;
+  margin: 0;
+}
+.collapse {
+  padding: 0;
+}
+.lista-nav{
+  width: 280px !important;
+}
 
+.lista-nav li{
+  padding: 0 20px;
+}
+
+.lista-nav li a{
+  width: 280px !important;
+  padding: 0 20px;
+}
+
+.lista-nav .li-nav:hover{
+  background-color: #717171;
+  cursor: pointer;
+}
 .header_section {
   position: fixed; /* Para que la barra de navegación se quede fija */
   top: 0; /* Para que esté en la parte superior */
@@ -58,7 +87,9 @@ body {
   background-color: #000000; /* Cambia el color de fondo como desees */
   z-index: 9999; /* Asegúrate de que esté por encima de otros elementos */
 }
-
+.welcomeUser{
+  color: white;
+}
 .custom_nav-container {
   flex-direction: column; /* Para que la navegación esté en columna */
 }
@@ -658,3 +689,4 @@ body {
   transform: translateY(0);
   opacity: 1;
 }
+

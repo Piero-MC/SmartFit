@@ -3,7 +3,7 @@
 @media (max-width: 992px) {
 
   .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
-    color: #000000;
+    color: #ffffff;
   }
 
   .quote_btn-container {
@@ -11,13 +11,6 @@
   }
 
 
-  .ring_section .ring_container .detail-box {
-    margin-bottom: 45px;
-  }
-
-  .price_section .price_container .box {
-    height: 450px;
-  }
 }
 
 @media (max-width: 768px) {
