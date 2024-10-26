@@ -11,21 +11,21 @@
     "codigo": "C1001",
     "producto": "CR3 Pro-Universe",
     "stock": "100",
-    "precio": "149.0"
+    "precio": "149.99"
   },
   {
     "id": "03",
     "codigo": "C1002",
     "producto": "Anabolic Iso-Whey",
     "stock": "100",
-    "precio": "219.0"
+    "precio": "219.99"
   },
   {
     "id": "04",
     "codigo": "C1003",
     "producto": "BCAA XT5 Refuel",
     "stock": "100",
-    "precio": "219.0"
+    "precio": "219.99"
   },
   {
     "id": "05",

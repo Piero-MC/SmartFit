@@ -44,7 +44,6 @@
   </form>
 </body>
 <script>
-<<<<<<< HEAD
   document.addEventListener('DOMContentLoaded', function () {
     if (!localStorage.getItem('usuarios')) {
       const usuarios = [
@@ -100,68 +99,6 @@
     const content = document.querySelector('.fade-in');
     content.classList.add('visible'); // Añade la clase para iniciar la animación
   });
-=======
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevenir el comportamiento por defecto del form
-      
-      var username = document.getElementById('username').value;
-      var password = document.getElementById('password').value;
-      
-      // Validar que ambos campos no estén vacíos
-      if (username.trim() === '' || password.trim() === '') {
-        alert('Por favor, complete ambos campos.');
-        return;
-      }
-  
-      // Comprobar si es el usuario admin
-      if (username === 'admin' && password === 'admin') {
-        // Si es admin, redirigir a la página de administración
-        window.location.href = 'admin.html';
-        return; // Finalizar la ejecución
-      }
-  
-      // Obtener el archivo JSON y realizar la validación para otros usuarios
-      fetch('empleados.json')
-        .then(response => response.json())
-        .then(empleados => {
-          // Buscar si las credenciales coinciden
-          const empleado = empleados.find(emp => emp.username === username && emp.password === password);
-          
-          if (empleado) {
-            // Guardar el nombre de usuario en localStorage y redirigir al dashboard
-            localStorage.setItem('username', username);
-            window.location.href = 'dashboard.html';
-          } else {
-            alert('Credenciales incorrectas, por favor intente nuevamente.');
-          }
-        })
-        .catch(error => {
-          console.error('Error al cargar los datos de empleados:', error);
-          alert('Hubo un error al procesar su solicitud.');
-        });
-    });
-  
-    document.addEventListener('DOMContentLoaded', function () {
-      const content = document.querySelector('.fade-in');
-      content.classList.add('visible'); // Añade la clase para iniciar la animación
-    });
-  </script>
-  <script>
-    // Función para validar y eliminar caracteres no permitidos
-    function validateInput(event) {
-        const regex = /^[a-zA-Z0-9]*$/; // Permitir solo letras y números
-        const value = event.target.value;
-
-        // Reemplazar caracteres no válidos
-        if (!regex.test(value)) {
-            event.target.value = value.replace(/[^a-zA-Z0-9]/g, ''); // Remover caracteres no válidos
-        }
-    }
-
-    // Asignar la función de validación a los eventos de entrada
-    document.getElementById('username').addEventListener('input', validateInput);
-    document.getElementById('password').addEventListener('input', validateInput);
->>>>>>> 099c13b2d8abd2a3edc536536f7adea29f27e021
 </script>
 <script>
   // Función para validar y eliminar caracteres no permitidos
