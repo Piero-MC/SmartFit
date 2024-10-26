@@ -176,7 +176,7 @@
         // Buscar el suplemento en el array
         let suplemento = suplementos.find(s => s.codigo === codigo || s.producto === nombreProducto);
 
-
+        let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
         fetch('clientes.json')
             .then(response => response.json())
             .then(data => empleados = data);
@@ -274,9 +274,9 @@
         document.getElementById('dniEmpleado').addEventListener('input', (e) => {
             let dni = e.target.value;
             if (dni.length === 8) {
-                let empleado = empleados.find(emp => emp.dni === dni);
-                if (empleado) {
-                    document.getElementById('nombreEmpleado').value = empleado.nombre;
+                let cliente = clientes.find(cli => cli.dni === dni);
+                if (cliente) {
+                    document.getElementById('nombreEmpleado').value = cliente.name;
                 } else {
                     alert('Empleado no encontrado');
                 }

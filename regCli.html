@@ -207,7 +207,7 @@
                             <a href="clientes.html" id="btnCompra" type="submit"
                                 class="btn btn-success btn-block mt-3 btnPago">Pagar S/50.00</a>
 
-                            <a href="clientes.html" id="btnCompra" type="submit"
+                            <a href="clientes.html" id="btnCompraEf" type="submit"
                                 class="btn btn-success btn-block mt-3 btnPagoEf">Pagar en Efectivo</a>
 
                             <!-- Iconos de tarjetas -->
@@ -238,7 +238,59 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
 </body>
+<script>
+    document.getElementById('btnCompra').addEventListener('click', guardarCliente);
+    document.getElementById('btnCompraEf').addEventListener('click', guardarCliente);
 
+    function guardarCliente(event) {
+        event.preventDefault();
+
+        // Capturar los valores del formulario
+        const dni = document.getElementById('dni').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const subscription = document.getElementById('subscription').value;
+        const months = parseInt(document.getElementById('months').value);
+
+        // Calcular fecha de registro y fecha fin
+        const fechaRegistro = new Date();
+        const fechaFin = new Date(fechaRegistro);
+        fechaFin.setMonth(fechaFin.getMonth() + months);
+
+        // Formatear las fechas a yyyy-mm-dd
+        const formatoFecha = (fecha) => fecha.toISOString().split('T')[0];
+        const fechaRegistroFormateada = formatoFecha(fechaRegistro);
+        const fechaFinFormateada = formatoFecha(fechaFin);
+
+        // Crear el objeto del cliente con las fechas
+        const cliente = {
+            dni,
+            name,
+            email,
+            phone,
+            subscription,
+            months,
+            fechaRegistro: fechaRegistroFormateada,
+            fechaFin: fechaFinFormateada
+        };
+
+        // Obtener los datos actuales de clientes en localStorage o crear un array vacío si no existen
+        let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+        // Agregar el nuevo cliente al array
+        clientes.push(cliente);
+
+        // Guardar el array actualizado en localStorage
+        localStorage.setItem('clientes', JSON.stringify(clientes));
+        console.log(localStorage.getItem('clientes'))
+
+        alert('Cliente registrado con éxito');
+
+        // Redirigir a clientes.html después de guardar
+        window.location.href = "clientes.html";
+    }
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const content = document.querySelector('.fade-in');
