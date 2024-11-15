@@ -25,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
+  <link href="css/res.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
@@ -84,6 +85,22 @@
     </div>
   </header>
 
+
+  <div class="menu">
+    <input type="checkbox" id="toggle" style="display: none;">
+    <label for="toggle" class="menu-toggle">
+        <p class="welcomeUser" id="welcomeUser_"></p>
+      <span class="menu-icon">☰</span>
+    </label>
+    
+    <ul class="menu-links">
+      <li><a href="#inicio">Dashboard</a></li>
+      <li><a href="#servicios">Ventas</a></li>
+      <li><a href="#nosotros">Suplementos</a></li>
+      <li><a href="#contacto">Membresías</a></li>
+      <li><a href="#contacto">Clientes</a></li>
+    </ul>
+  </div>
   <!-- home section starts -->
   <section class="container fade-in">
 
@@ -93,7 +110,7 @@
 
     <div class="container" style="width: 2000px;">
       <div class="row text-center mb-4">
-        <div class="col-md-4">
+        <div class="col-md-4 col_card">
           <div class="card mb-3">
             <div class="card-header">Ganancias Totales</div>
             <div class="card-body">
@@ -121,18 +138,17 @@
       <div class="container" style="display: flex;">
 
         <!-- Gráfico de Clientes Registrados -->
-        <canvas id="clientesChart" style="max-width: 400px; max-height: 350px;"></canvas>
+        <canvas class="grafico" id="clientesChart" style="max-width: 400px; max-height: 350px;"></canvas>
 
         <!-- Gráfico de Ventas de Suplementos -->
-        <canvas id="suplementosChart" style="max-width: 400px; max-height: 350px;"></canvas>
+        <canvas class="grafico" id="suplementosChart" style="max-width: 400px; max-height: 350px;"></canvas>
 
         <!-- Gráfico de Ingresos Generados -->
-        <canvas id="ingresosChart" style="max-width: 400px; max-height: 350px;"></canvas>
+        <canvas class="grafico"id="ingresosChart" style="max-width: 400px; max-height: 350px;"></canvas>
       </div>
   </section>
 
 
-  </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
@@ -299,7 +315,10 @@
     const username = localStorage.getItem('username');
     document.getElementById('welcomeUser').textContent = 'Bienvenido, ' + username;
   });
-
+  document.addEventListener('DOMContentLoaded', function () {
+    const username = localStorage.getItem('username');
+    document.getElementById('welcomeUser_').textContent = 'Bienvenido, ' + username;
+  });
   // Manejar el cierre de sesión
   document.getElementById('logout').addEventListener('click', function () {
     // Eliminar el nombre de usuario de localStorage
