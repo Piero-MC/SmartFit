@@ -45,6 +45,7 @@
 </body>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    localStorage.clear();
     if (!localStorage.getItem('usuarios')) {
       const usuarios = [
         { nombre:'Administrador', username:'admin', password:'admin', dni:'12345678', correo:'admin@gmail.com', direccion:'Lima', telefono:'999999999', estado:'Activo' },
@@ -115,6 +116,41 @@
   // Asignar la función de validación a los eventos de entrada
   document.getElementById('username').addEventListener('input', validateInput);
   document.getElementById('password').addEventListener('input', validateInput);
+
+  function performanceTest() {
+    const totalTransactions = 2500; // Define el número total de transacciones
+    const testData = { key: "testKey", value: "testValue" };
+    let transactionCount = 0; // Contador de transacciones
+
+    console.time("Tiempo Total de Ejecución");
+
+    for (let i = 0; i < totalTransactions; i++) {
+        const transactionStart = performance.now();
+        
+        // Operaciones simuladas: escritura, lectura y eliminación
+        localStorage.setItem(testData.key + i, testData.value); // Escritura
+        const value = localStorage.getItem(testData.key + i);  // Lectura
+        localStorage.removeItem(testData.key + i);            // Eliminación
+
+        const transactionEnd = performance.now();
+
+        // Contar la transacción si todas las operaciones son exitosas
+        if (value === testData.value) {
+            transactionCount++;
+        }
+
+        // Mostrar tiempo de cada transacción (opcional)
+        console.log(`Transacción ${i + 1}: ${transactionEnd - transactionStart} ms`);
+    }
+
+    console.timeEnd("Tiempo Total de Ejecución");
+    
+    console.log(`Número Total de Transacciones: ${transactionCount}`);
+    console.log(`Tiempo Total de Ejecución: ${totalExecutionTimeMs} ms (${totalExecutionTimeSec} segundos)`);
+
+}
+
+performanceTest();
 </script>
 
 </html>
