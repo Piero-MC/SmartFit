@@ -54,7 +54,6 @@
     max-height: 0;
     transition: max-height 0.3s ease;
     z-index: 99;
-    min-height: 335px !important;
   }
 
   /* Estilos de los enlaces */
@@ -77,7 +76,7 @@
 
   /* Mostrar el menú cuando el checkbox está marcado */
   #toggle:checked ~ .menu-links {
-    max-height: 300px; /* Ajustar según el número de elementos en el menú */
+    max-height: 335px; /* Ajustar según el número de elementos en el menú */
   }
 
   /* Rotación del ícono del menú al abrir */

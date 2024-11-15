@@ -693,3 +693,8 @@ body {
   opacity: 1;
 }
 
+@media (max-width: 768px) {
+  .header_section{
+    display: none !important;
+}
+}
