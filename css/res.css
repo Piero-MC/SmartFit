@@ -54,6 +54,7 @@
     max-height: 0;
     transition: max-height 0.3s ease;
     z-index: 99;
+    min-height: 335px !important;
   }
 
   /* Estilos de los enlaces */
@@ -104,4 +105,5 @@
     text-align: center;
     justify-content: center;
   }
+
  }
