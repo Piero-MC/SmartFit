@@ -102,7 +102,13 @@
   .heading_container{
     align-items: center;
     text-align: center;
-    justify-content: center;
   }
 
+  .contenedor_section{
+    margin-top: 20%;
+  }
+
+  .container{
+    margin: 0;
+  }
  }

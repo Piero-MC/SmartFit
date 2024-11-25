@@ -1,4 +1,4 @@
-@media (max-width: 1120px) {}
+
 
 @media (max-width: 992px) {
 
@@ -96,10 +96,6 @@
 
   .slider_section .detail_box h2 {
     font-size: 1.8rem;
-  }
-
-  .heading_container h2::before {
-    display: none;
   }
 }
 
