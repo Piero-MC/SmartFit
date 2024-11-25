@@ -698,3 +698,7 @@ body {
     display: none !important;
 }
 }
+
+#logoutR{
+  color: white;
+}

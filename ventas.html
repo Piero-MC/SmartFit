@@ -22,46 +22,65 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 
-  <style>
-    body {
-      padding: 20px;
-    }
-
-    table {
-      width: 100%;
-    }
-
-    table thead th {
-      text-align: center;
-    }
-
-    table tbody td {
-      text-align: center;
-    }
-
-    button {
-      margin: 5px;
-    }
-
-    .btn-success{
-            background-color: black !important;
-            border: none;
-        }
-        .btn-primary{
-            background-color: #FDB913!important;
-            color: black;
-            border: none;
-        }
-        .btn-primary:hover{
-            background-color: #f8da8e !important;
-            color: black;
-        }
-        .btn-success:hover{
-            background-color: rgb(122, 122, 122) !important;
-        }
-  </style>
+  <link rel="stylesheet" href="css/res.css">
 </head>
+<style>
+  body {
+    padding: 20px;
+  }
 
+  table {
+    width: 100%;
+  }
+
+  table thead th {
+    text-align: center;
+  }
+
+  table tbody td {
+    text-align: center;
+  }
+
+  button {
+    margin: 5px;
+  }
+
+  .btn-success{
+          background-color: black !important;
+          border: none;
+      }
+      .btn-primary{
+          background-color: #FDB913!important;
+          color: black;
+          border: none;
+      }
+      .btn-primary:hover{
+          background-color: #f8da8e !important;
+          color: black;
+      }
+      .btn-success:hover{
+          background-color: rgb(122, 122, 122) !important;
+      }
+
+      @media (max-width: 768px) {
+        body{
+          padding: 0;
+        }
+        .responsive-section {
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .table {
+            min-width: 600px; /* Reduce el ancho mínimo para pantallas pequeñas */
+        }
+
+        .button-group .btn {
+            width: 100%; /* Botones ocupan el ancho completo */
+            text-align: center;
+        }
+}
+</style>
 <body>
     <header class="header_section">
       <div class="container-fluid">
@@ -115,12 +134,27 @@
         </nav>
       </div>
     </header>
-
-    <section class="fade-in" style="width: 1000px; margin-left: 400px; margin-top: 100px;">
+    <div class="menu">
+      <input type="checkbox" id="toggle" style="display: none;">
+      <label for="toggle" class="menu-toggle">
+          <p class="welcomeUser" id="welcomeUser_"></p>
+        <span class="menu-icon">☰</span>
+      </label>
+      
+      <ul class="menu-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="ventas.html">Ventas</a></li>
+        <li><a href="suplementos.html">Suplementos</a></li>
+        <li><a href="membresias.html">Membresías</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a id="logoutR"><strong>Cerrar Sesión</strong></a></li>
+      </ul>
+    </div>
+    <section class="fade-in responsive-section">
       <div class="heading_container">
         <h2 class="text-center mb-4">Ventas Registradas</h2>
       </div>
-
+    
       <!-- Tabla para mostrar las ventas registradas -->
       <div class="table-responsive">
         <table class="table table-bordered">
@@ -139,13 +173,22 @@
           </tbody>
         </table>
       </div>
-      <!-- Botón para generar informe -->
-      <button class="btn btn-success" onclick="generarInforme()">Generar Informe</button>
       
-      <a class="btn btn-primary" href="nuevaVenta.html">Nueva Venta</a>
+      <!-- Botón para generar informe -->
+      <div class="button-group">
+        <button class="btn btn-success" onclick="generarInforme()">Generar Informe</button>
+        <a class="btn btn-primary" href="nuevaVenta.html">Nueva Venta</a>
+      </div>
     </section>
 
   <script>
+    document.getElementById('logoutR').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
+
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
     document.addEventListener('DOMContentLoaded', function () {
       // Cargar ventas desde el Local Storage
       cargarVentas();

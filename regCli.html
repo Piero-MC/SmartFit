@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="css/res.css">
     <style>
         .btn-custom {
             background-color: #DAA520;
@@ -32,6 +32,18 @@
         .btn-custom:hover {
             background-color: #FFD700;
             /* Color dorado más claro al pasar el mouse */
+        }
+
+        @media (max-width: 768px) {
+            body{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .form_xd{
+            display: flex;
+            gap: 15px;
         }
     </style>
 </head>
@@ -96,6 +108,22 @@
         <!-- end header section -->
     </div>
 
+    <div class="menu">
+        <input type="checkbox" id="toggle" style="display: none;">
+        <label for="toggle" class="menu-toggle">
+            <p class="welcomeUser" id="welcomeUser_"></p>
+          <span class="menu-icon">☰</span>
+        </label>
+        
+        <ul class="menu-links">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="ventas.html">Ventas</a></li>
+          <li><a href="suplementos.html">Suplementos</a></li>
+          <li><a href="membresias.html">Membresías</a></li>
+          <li><a href="clientes.html">Clientes</a></li>
+          <li><a id="logoutR"><strong>Cerrar Sesión</strong></a></li>
+        </ul>
+      </div>
 
     <div class="container fade-in mt-5 c">
         <div class="heading_container" style="margin-bottom: 20px;">
@@ -173,7 +201,7 @@
                             </div>
 
                             <!-- Fecha de Vencimiento y CVV en una sola línea -->
-                            <div class="form-group row">
+                            <div class="form-group row form_xd">
                                 <div class="col-md-6">
                                     <input type="text" id="expiryDate" class="form-control" placeholder="MM/AA"
                                         required>
@@ -185,7 +213,7 @@
                             </div>
                             <!-- Nombre y Apellido en una sola línea -->
 
-                            <div class="form-group row">
+                            <div class="form-group row form_xd">
                                 <div class="col-md-6">
                                     <input type="text" id="cardholderName" class="form-control" placeholder="Nombre"
                                         required>
@@ -216,7 +244,7 @@
                                     src="https://cdn0.iconfinder.com/data/icons/flat-design-business-set-3/24/payment-method-visa-512.png"
                                     alt="Visa">
                                 <img class="targets"
-                                    src="https://static-00.iconduck.com/assets.00/mastercard-icon-2048x1587-tygju446.png"
+                                    src="https://e7.pngegg.com/pngimages/828/497/png-clipart-mastercard-mastercard.png"
                                     alt="MasterCard">
                                 <img class="targets" src="https://cdn-icons-png.flaticon.com/512/349/349228.png"
                                     alt="American Express">
@@ -414,7 +442,13 @@
     });
     // Mostrar el total en el botón del div oculto
 
+    document.getElementById('logoutR').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
 
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
 </script>
 
 </html>

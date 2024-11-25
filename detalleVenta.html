@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="css/res.css">
     <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap"
         rel="stylesheet">
@@ -22,6 +22,7 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/res.css">
     <style>
         body {
             padding: 20px;
@@ -59,6 +60,12 @@
         button {
             margin: 5px;
         }
+
+        @media (max-width: 768px) {
+        body{
+          padding: 0;
+        }
+    }
     </style>
 </head>
 
@@ -117,7 +124,22 @@
             </nav>
         </div>
     </header>
-
+    <div class="menu">
+        <input type="checkbox" id="toggle" style="display: none;">
+        <label for="toggle" class="menu-toggle">
+            <p class="welcomeUser" id="welcomeUser_"></p>
+          <span class="menu-icon">☰</span>
+        </label>
+        
+        <ul class="menu-links">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="ventas.html">Ventas</a></li>
+          <li><a href="suplementos.html">Suplementos</a></li>
+          <li><a href="membresias.html">Membresías</a></li>
+          <li><a href="clientes.html">Clientes</a></li>
+          <li><a id="logoutR"><strong>Cerrar Sesión</strong></a></li>
+        </ul>
+      </div>
     <section class="fade-in container mt-4">
 
         <div class="heading_container">
@@ -170,6 +192,13 @@
     </section>
 
     <script>
+        document.getElementById('logoutR').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
+
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
         document.addEventListener('DOMContentLoaded', function () {
             // Obtener el índice de la venta de la URL
             const urlParams = new URLSearchParams(window.location.search);

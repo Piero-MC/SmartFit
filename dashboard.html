@@ -95,11 +95,11 @@
     
     <ul class="menu-links">
       <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="#servicios">Ventas</a></li>
+      <li><a href="ventas.html">Ventas</a></li>
       <li><a href="suplementos.html">Suplementos</a></li>
       <li><a href="membresias.html">Membresías</a></li>
-      <li><a href="#contacto">Clientes</a></li>
-      <li><a href="#contacto"><strong>Cerrar Sesión</strong></a></li>
+      <li><a href="clientes.html">Clientes</a></li>
+      <li><a id="logoutR"><strong>Cerrar Sesión</strong></a></li>
     </ul>
   </div>
   <!-- home section starts -->
@@ -322,6 +322,14 @@
   });
   // Manejar el cierre de sesión
   document.getElementById('logout').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
+
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
+
+  document.getElementById('logoutR').addEventListener('click', function () {
     // Eliminar el nombre de usuario de localStorage
     localStorage.removeItem('username');
 

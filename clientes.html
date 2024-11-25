@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="clientes.css">
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/res.css">
 </head>
+
 <style>
   .table thead th {
     position: sticky;
@@ -91,56 +93,48 @@
 
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
+    .table-responsive {
+        display: block;
+        overflow-x: auto; /* Habilita desplazamiento horizontal */
+        width: 100%;
+    }
+
     .table {
-        font-size: 12px;
+        width: 100%;
+        min-width: 900px; /* Define un ancho mínimo para forzar el desplazamiento */
     }
 
     .table th, .table td {
-        padding: 6px;
-    }
-
-    /* Ajuste de tabla estilo "carta" en dispositivos móviles */
-    .table-responsive {
-        display: block;
-        width: 100%;
-    }
-
-    .table thead {
-        display: none;
-    }
-
-    .table tbody, .table tr, .table td {
-        display: block;
-        width: 100%;
-    }
-
-    .table td {
+        white-space: nowrap; /* Evita que el contenido se divida en varias líneas */
         text-align: left;
-        padding-left: 50%;
-        position: relative;
+        padding: 8px;
     }
 
-    .table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: bold;
-        text-transform: uppercase;
+    .table th {
+        background-color: #f4f4f4;
+        position: sticky;
+        top: 0;
     }
-}
 
-/* Botón "renovar" */
-.btn-renew {
-    color: #ffffff;
-    background-color: #28a745;
-    padding: 4px 8px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 14px;
-}
+    .btn-renew {
+        padding: 6px 12px;
+        font-size: 12px;
+        text-align: center;
+        display: inline-block;
+    }
 
-.btn-renew:hover {
-    background-color: #218838;
+    .contact_section{
+      padding: 10% 0;
+    }
+
+    .input_btn_search{
+      display: flex !important;
+      gap: 20px;
+    }
+
+    .price_section{
+      height: 95vh !important;
+    }
 }
 </style>
 
@@ -203,6 +197,23 @@
     <!-- end header section -->
   </div>
 
+  <div class="menu">
+    <input type="checkbox" id="toggle" style="display: none;">
+    <label for="toggle" class="menu-toggle">
+        <p class="welcomeUser" id="welcomeUser_"></p>
+      <span class="menu-icon">☰</span>
+    </label>
+    
+    <ul class="menu-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="ventas.html">Ventas</a></li>
+      <li><a href="suplementos.html">Suplementos</a></li>
+      <li><a href="membresias.html">Membresías</a></li>
+      <li><a href="clientes.html">Clientes</a></li>
+      <li><a id="logoutR"><strong>Cerrar Sesión</strong></a></li>
+    </ul>
+  </div>
+
   <!-- clientes section -->
   <div class="price_section layout_padding fade-in">
     <div class="container">
@@ -214,7 +225,7 @@
       <section class="contact_section layout_padding">
         <div class="card-body">
           <!-- Buscador por DNI -->
-          <div class="row mb-4">
+          <div class="row mb-4 input_btn_search">
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
@@ -271,6 +282,13 @@
   <script type="text/javascript" src="js/custom.js"></script>
 </body>
 <script>
+  document.getElementById('logoutR').addEventListener('click', function () {
+    // Eliminar el nombre de usuario de localStorage
+    localStorage.removeItem('username');
+
+    // Redirigir al usuario a la página de inicio de sesión o de inicio
+    window.location.href = 'index.html';
+  });
   document.addEventListener('DOMContentLoaded', function () {
     const content = document.querySelector('.fade-in');
     content.classList.add('visible'); // Añade la clase para iniciar la animación
