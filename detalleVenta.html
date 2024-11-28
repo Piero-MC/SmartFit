@@ -193,12 +193,12 @@
 
     <script>
         document.getElementById('logoutR').addEventListener('click', function () {
-    // Eliminar el nombre de usuario de localStorage
-    localStorage.removeItem('username');
+            // Eliminar el nombre de usuario de localStorage
+            localStorage.removeItem('username');
 
-    // Redirigir al usuario a la página de inicio de sesión o de inicio
-    window.location.href = 'index.html';
-  });
+            // Redirigir al usuario a la página de inicio de sesión o de inicio
+            window.location.href = 'index.html';
+        });
         document.addEventListener('DOMContentLoaded', function () {
             // Obtener el índice de la venta de la URL
             const urlParams = new URLSearchParams(window.location.search);
@@ -239,27 +239,76 @@
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
 
-                const nombreEmpleado = document.getElementById('nombreEmpleado').value;
-                const dniEmpleado = document.getElementById('dniEmpleado').value;
-                const fechaVenta = document.getElementById('fechaVenta').value;
+                const nombreEmpleado = document.getElementById("nombreEmpleado").value;
+                const dniEmpleado = document.getElementById("dniEmpleado").value;
+                const fechaVenta = document.getElementById("fechaVenta").value;
 
-                doc.text(`Detalle de Venta`, 20, 10);
-                doc.text(`Empleado: ${nombreEmpleado} - DNI: ${dniEmpleado}`, 20, 20);
-                doc.text(`Fecha: ${fechaVenta}`, 20, 30);
+                // Agregar logo (opcional)
+                const logoURL = "images/sf_logo_black2.jpg"; // Reemplaza con tu logo
+                doc.addImage(logoURL, "PNG", 10, 10, 45, 20);
 
-                let y = 40;
+                // Encabezado principal
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(16);
+                doc.text("Detalle de Venta", 105, 20, null, null, "center");
 
-                const productos = JSON.parse(localStorage.getItem('ventas'))[index].productos;
+                // Información del empleado y venta
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                doc.text(`Empleado: ${nombreEmpleado}`, 50, 40);
+                doc.text(`DNI: ${dniEmpleado}`, 50, 50);
+                doc.text(`Fecha: ${fechaVenta}`, 50, 60);
+
+                // Línea divisoria
+                doc.setLineWidth(0.5);
+                doc.setDrawColor(150, 150, 150);
+                doc.line(10, 70, 200, 70);
+
+                // Tabla de productos
+                const productos = JSON.parse(localStorage.getItem("ventas"))[index].productos;
+                let y = 80;
+
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "bold");
+                doc.text("Productos Detallados", 105, y, null, null, "center");
+
+                y += 10;
 
                 productos.forEach((producto, i) => {
-                    doc.text(`Producto ${i + 1}:`, 20, y);
-                    doc.text(`Código: ${producto.codigo}`, 20, y + 10);
-                    doc.text(`Nombre: ${producto.nombre}`, 20, y + 20);
-                    doc.text(`Cantidad: ${producto.cantidad}`, 20, y + 30);
-                    doc.text(`Precio Unitario: ${producto.precioUnitario}`, 20, y + 40);
-                    doc.text(`Total: ${producto.total}`, 20, y + 50);
-                    y += 60;
+                    // Encabezado del producto
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(11);
+                    doc.text(`Producto #${i + 1}`, 10, y);
+
+                    // Detalles del producto
+                    doc.setFont("helvetica", "normal");
+                    doc.setFontSize(10);
+                    y += 8;
+                    doc.text(`Código: ${producto.codigo}`, 15, y);
+                    doc.text(`Nombre: ${producto.nombre}`, 15, y + 6);
+                    doc.text(`Cantidad: ${producto.cantidad}`, 15, y + 12);
+                    doc.text(`Precio Unitario: $${producto.precioUnitario}`, 15, y + 18);
+                    doc.text(`Total: $${producto.total}`, 15, y + 24);
+
+                    // Separador entre productos
+                    y += 30;
+                    doc.setDrawColor(220, 220, 220);
+                    doc.line(10, y, 200, y);
+                    y += 10;
+
+                    // Verificar si el contenido excede el límite de la página
+                    if (y > 270) {
+                    doc.addPage();
+                    y = 20;
+                    }
                 });
+
+                // Pie de página
+                doc.setFontSize(10);
+                doc.setFont("helvetica", "italic");
+                doc.setTextColor(100, 100, 100);
+                doc.text("Informe generado automáticamente", 105, 290, null, null, "center");
+
 
                 doc.save("Detalle_Venta.pdf");
             };
@@ -285,6 +334,16 @@
             // Redirigir al usuario a la página de inicio de sesión o de inicio
             window.location.href = 'index.html';
         });
+    </script>
+    <script>
+         document.getElementById('logoutR').addEventListener('click', function () {
+            // Eliminar el nombre de usuario de localStorage
+            localStorage.removeItem('username');
+
+            // Redirigir al usuario a la página de inicio de sesión o de inicio
+            window.location.href = 'index.html';
+        });
+        
     </script>
 </body>
 

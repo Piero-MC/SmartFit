@@ -358,7 +358,15 @@
             window.location.href = 'index.html';
         });
     </script>
+    <script>
+        document.getElementById('logoutR').addEventListener('click', function () {
+            // Eliminar el nombre de usuario de localStorage
+            localStorage.removeItem('username');
 
+            // Redirigir al usuario a la página de inicio de sesión o de inicio
+            window.location.href = 'index.html';
+        });
+    </script>
 </body>
 
 </html>

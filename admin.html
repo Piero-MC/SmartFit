@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="clientes.css">
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/res.css">
 </head>
 <style>
     .container {
@@ -120,7 +121,33 @@
         /* Más espacio para la columna de dirección */
     }
 </style>
-
+<style>
+    .acciones_xd{
+        display: flex !important;
+        gap: 5px !important;
+    }
+    .fade-in{
+        margin-top: 2%;
+    }
+    @media (max-width: 768px){
+        .fade-in{
+            height:auto;
+            padding: 0;
+        }
+        .btn_eliminar{
+           background-color: transparent !important;
+           color:red !important;
+           padding: 3px;
+        }
+        .btn_edit{
+           background-color: transparent !important;
+           color:rgb(14, 172, 6) !important;
+           padding: 3px !important;
+           border: 1px solid rgb(14, 172, 6) ;
+        }
+        
+    }
+</style>
 <body>
     <div class="hero_area">
         <!-- header section starts -->
@@ -168,6 +195,18 @@
         </header>
         <!-- end header section -->
     </div>
+
+    <div class="menu">
+        <input type="checkbox" id="toggle" style="display: none;">
+        <label for="toggle" class="menu-toggle">
+            <p class="welcomeUser" id="welcomeUser_"></p>
+          <span class="menu-icon">☰</span>
+        </label>
+        
+        <ul class="menu-links">
+          <li><a id="logoutR"><strong>Cerrar Sesión</strong></a></li>
+        </ul>
+      </div>
     <section class="fade-in">
         <div class="heading_container" style="margin-top: 100px">
             <h2>Nuestros <strong>Empleados</strong></h2>
@@ -188,7 +227,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" class="form-control" id="password" name="password"
+                    <input type="text" class="form-control" id="password" name="password"
                         placeholder="Ingrese su contraseña" required>
                 </div>
                 <div class="form-group">
@@ -277,9 +316,9 @@
             <td>${usuario.direccion}</td>
             <td>${usuario.telefono}</td>
             <td>${usuario.estado}</td>
-            <td>
-                <button class="btn btn-primary" onclick="editarUsuario(${index})">Editar</button>
-                <button class="btn btn-danger" onclick="eliminarUsuario(${index})">Eliminar</button>
+            <td class="acciones_xd">
+                <button class="btn btn-primary btn_edit" onclick="editarUsuario(${index})">Editar</button>
+                <button class="btn btn-danger btn_eliminar"  onclick="eliminarUsuario(${index})">Eliminar</button>
             </td>
         `;
                 usuariosTableBody.appendChild(fila);
@@ -326,7 +365,7 @@
 
             document.getElementById('userId').value = index;
             document.getElementById('nombre').value = usuario.nombre;
-            document.getElementById('usuario').value = usuario.usuario;
+            document.getElementById('usuario').value = usuario.username;
             document.getElementById('password').value = usuario.password;
             document.getElementById('dni').value = usuario.dni;
             document.getElementById('correo').value = usuario.correo;
@@ -406,6 +445,15 @@
             if (!regex.test(e.target.value) || e.target.value.length > 9) {
                 e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 9); // Limitar a 9 números
             }
+        });
+    </script>
+    <script>
+         document.getElementById('logoutR').addEventListener('click', function () {
+            // Eliminar el nombre de usuario de localStorage
+            localStorage.removeItem('username');
+
+            // Redirigir al usuario a la página de inicio de sesión o de inicio
+            window.location.href = 'index.html';
         });
     </script>
 </body>

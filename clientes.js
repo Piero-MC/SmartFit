@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${client.months}</td>
                     <td>${client.fechaRegistro}</td>
                     <td>${client.fechaFin}</td>
-                    <td><a href="renovacion.html" class="btn-renew" data-id="${index}">renovar</a></td>
+                    <td><a href="renovacion.html?dni=${client.dni}" class="btn-renew">Renovar</a></td>
                 </tr>
             `;
             clientTableBody.innerHTML += row;
@@ -38,4 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const filteredClients = clients.filter(client => client.dni.includes(searchValue));
         renderClients(filteredClients);
     });
+
+
 });

@@ -20,8 +20,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="css/res.css">
     <style>
+        
+
+        @media (max-width: 768px) {
+            body{
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form_xd{
+                display: flex;
+                gap: 15px;
+            }   
+        }
+
         .btn-custom {
             background-color: #DAA520;
             /* Color dorado para el botón */
@@ -96,13 +110,28 @@
         <!-- end header section -->
     </div>
 
+    <div class="menu">
+        <input type="checkbox" id="toggle" style="display: none;">
+        <label for="toggle" class="menu-toggle">
+            <p class="welcomeUser" id="welcomeUser_"></p>
+            <span class="menu-icon">☰</span>
+        </label>
+        
+        <ul class="menu-links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="ventas.html">Ventas</a></li>
+            <li><a href="suplementos.html">Suplementos</a></li>
+            <li><a href="membresias.html">Membresías</a></li>
+            <li><a href="clientes.html">Clientes</a></li>
+            <li><a id="logoutR"><strong>Cerrar Sesión</strong></a></li>
+        </ul>
+    </div>
 
     <div class="container fade-in mt-5 c">
         <div class="heading_container" style="margin-bottom: 20px;">
             <h2>Renovar Membresía</h2>
         </div>
-        <form id="formClientes" action="process.php" method="POST">
-           
+        <form id="formClientes">
             <div class="form-group row">
                 <label for="subscription" class="col-sm-4 col-form-label">Membresía:</label>
                 <div class="col-sm-8">
@@ -116,8 +145,7 @@
             <div class="form-group row">
                 <label for="months" class="col-sm-4 col-form-label">Meses:</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" id="months" name="months" placeholder="Ingrese Meses"
-                        required>
+                    <input type="number" class="form-control" id="months" name="months" placeholder="Ingrese Meses" required>
                 </div>
             </div>
             <div class="d-flex justify-content-between">
@@ -147,7 +175,7 @@
                             </div>
 
                             <!-- Fecha de Vencimiento y CVV en una sola línea -->
-                            <div class="form-group row">
+                            <div class="form-group row form_xd">
                                 <div class="col-md-6">
                                     <input type="text" id="expiryDate" class="form-control" placeholder="MM/AA"
                                         required>
@@ -159,7 +187,7 @@
                             </div>
                             <!-- Nombre y Apellido en una sola línea -->
 
-                            <div class="form-group row">
+                            <div class="form-group row form_xd">
                                 <div class="col-md-6">
                                     <input type="text" id="cardholderName" class="form-control" placeholder="Nombre"
                                         required>
@@ -179,10 +207,11 @@
 
                             <!-- Botón de Pago -->
                             <a href="clientes.html" id="btnCompra" type="submit"
-                                class="btn btn-success btn-block mt-3 btnPago">Pagar S/50.00</a>
+                                class="btn btn-success btn-block mt-3 btnPago" onclick="renovarMembresia(event)" >Pagar S/50.00</a>
 
-                            <a href="clientes.html" id="btnCompra" type="submit"
-                                class="btn btn-success btn-block mt-3 btnPagoEf">Pagar en Efectivo</a>
+                            <a href="clientes.html" id="btnCompra" class="btn btn-success btn-block mt-3 btnPagoEf" 
+                            onclick="renovarMembresia(event)">Pagar en Efectivo</a>
+                             
 
                             <!-- Iconos de tarjetas -->
                             <div class="text-center">
@@ -269,7 +298,8 @@
 
         // Mostrar el total en el enlace del div oculto
         document.getElementById('btnCompra').textContent = `Pagar: S/ ${total.toFixed(2)}`;
-
+        console.log(localStorage.setItem('clienteIndex', index))
+        console.log(localStorage.setItem('clienteDNI', dni))
     });
 
     document.getElementById('pagarButton').addEventListener('click', function () {
@@ -294,5 +324,71 @@
 
 
 </script>
+<script>
+    function renovarMembresia(event) {
+        event.preventDefault(); // Evita la redirección inmediata del enlace
+        
+        console.log(localStorage.getItem('clienteDNI'))
+        // Capturar los valores del formulario
+        const dni = obtenerParametroURL('dni');
+        const nuevaSubscription = document.getElementById('subscription').value;
+        const nuevosMeses = parseInt(document.getElementById('months').value);
 
+        // Validar que todos los campos tengan datos
+        if (!dni || !nuevaSubscription || !nuevosMeses) {
+            alert('Por favor, completa todos los campos antes de continuar.');
+            return;
+        }
+
+        // Obtener los datos actuales de clientes desde localStorage
+        let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+
+        // Buscar al cliente por su DNI
+        const clienteIndex = clientes.findIndex(cliente => cliente.dni === dni);
+
+        if (clienteIndex === -1) {
+            alert('Cliente no encontrado');
+            return;
+        }
+
+        // Actualizar la información del cliente
+        const cliente = clientes[clienteIndex];
+
+        // Actualizar la suscripción solo si es diferente
+        if (nuevaSubscription !== cliente.subscription) {
+            cliente.subscription = nuevaSubscription;
+        }
+
+        // Actualizar los meses y recalcular la fecha de fin
+        cliente.months += nuevosMeses;
+        const fechaFinActual = new Date(cliente.fechaFin);
+        fechaFinActual.setMonth(fechaFinActual.getMonth() + nuevosMeses);
+        cliente.fechaFin = fechaFinActual.toISOString().split('T')[0];
+
+        // Guardar los datos actualizados en localStorage
+        clientes[clienteIndex] = cliente;
+        localStorage.setItem('clientes', JSON.stringify(clientes));
+
+        alert('Membresía renovada con éxito');
+
+        // Redirigir a clientes.html después de renovar
+        window.location.href = "clientes.html";
+    }
+
+    function obtenerParametroURL(nombre) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(nombre);
+    }
+
+</script>
+
+<script>
+    document.getElementById('logoutR').addEventListener('click', function () {
+        // Eliminar el nombre de usuario de localStorage
+        localStorage.removeItem('username');
+
+        // Redirigir al usuario a la página de inicio de sesión o de inicio
+        window.location.href = 'index.html';
+    });
+</script>
 </html>
