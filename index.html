@@ -116,40 +116,37 @@
   document.getElementById('username').addEventListener('input', validateInput);
   document.getElementById('password').addEventListener('input', validateInput);
 
-  function performanceTest() {
-    const totalTransactions = 2500; // Define el número total de transacciones
+ 
+
+  function Solicitudes_fc() {
+    const iterations = 2500; // Número de solicitudes simuladas
     const testData = { key: "testKey", value: "testValue" };
-    let transactionCount = 0; // Contador de transacciones
 
-    console.time("Tiempo Total de Ejecución");
+    console.time("Tiempo de Respuesta Total");
 
-    for (let i = 0; i < totalTransactions; i++) {
-        const transactionStart = performance.now();
+    for (let i = 0; i < iterations; i++) {
+        const startTime = performance.now();
         
-        // Operaciones simuladas: escritura, lectura y eliminación
-        localStorage.setItem(testData.key + i, testData.value); // Escritura
-        const value = localStorage.getItem(testData.key + i);  // Lectura
-        localStorage.removeItem(testData.key + i);            // Eliminación
+        // Simular una operación de escritura
+        localStorage.setItem(testData.key + i, testData.value);
 
-        const transactionEnd = performance.now();
+        // Simular una operación de lectura
+        const value = localStorage.getItem(testData.key + i);
 
-        // Contar la transacción si todas las operaciones son exitosas
-        if (value === testData.value) {
-            transactionCount++;
-        }
-
-        // Mostrar tiempo de cada transacción (opcional)
-        console.log(`Transacción ${i + 1}: ${transactionEnd - transactionStart} ms`);
+        // Simular una operación de eliminación
+        localStorage.removeItem(testData.key + i);
+        
+        const endTime = performance.now();
     }
 
-    console.timeEnd("Tiempo Total de Ejecución");
-    
-    console.log(`Número Total de Transacciones: ${transactionCount}`);
-    console.log(`Tiempo Total de Ejecución: ${totalExecutionTimeMs} ms (${totalExecutionTimeSec} segundos)`);
+    console.timeEnd("Tiempo de Respuesta Total");
+    console.log(`Número total de solicitudes procesadas: ${iterations}`);
+  }
+  
 
-}
+  Solicitudes_fc();
 
-performanceTest();
+
 </script>
 
 </html>
